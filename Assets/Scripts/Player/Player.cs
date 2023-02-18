@@ -6,45 +6,46 @@ using UnityEngine.Tilemaps;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private Tilemap groundTilemap;
+    protected Tilemap groundTilemap;
     [SerializeField]
-    private Tilemap collisionTilemap;
-    private PlayerMovement controls;
+    protected Tilemap collisionTilemap;
+    protected PlayerMovement controls;
 
     [SerializeField]
-    private float smoothSpeed = 10.0f;
-    private Vector3 moveToPosition;
-    private Vector3 velocity = Vector3.zero;
-    private SpriteRenderer spriteRenderer;
+    protected float smoothSpeed = 10.0f;
+    protected Vector3 moveToPosition;
+    protected Vector3 velocity = Vector3.zero;
+    protected SpriteRenderer spriteRenderer;
 
     public float startHp;
-    private float hp;
+    protected float hp;
     public float invulnerabilityCooldown;
     public float invulnerabilityTimer;
     
-    private void Awake() {
+    protected void Awake() {
         controls = new PlayerMovement();
     }
 
-    private void OnEnable() {
+    protected void OnEnable() {
         controls.Enable();
     }
 
-    private void OnDisable() {
+    protected void OnDisable() {
         controls.Disable();
     }
 
     void Start()
     {
-        moveToPosition = transform.position;
         controls.Main.Movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
+        controls.Main.Fire.performed += ctx => OnFire();
+        moveToPosition = transform.position;
         hp = startHp;
         invulnerabilityTimer = 0;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private bool CanMove(Vector2 direction)
+    protected bool CanMove(Vector2 direction)
     {
         Vector3Int gridPosition = groundTilemap.WorldToCell(moveToPosition + (Vector3)direction);
         if (!groundTilemap.HasTile(gridPosition) || collisionTilemap.HasTile(gridPosition))
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
         return true;
     }
 
-    private void Move(Vector2 direction)
+    protected void Move(Vector2 direction)
     {
         if (CanMove(direction))
         {
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
         RotateSprite(direction);
     }
 
-    private void RotateSprite(Vector2 direction)
+    protected void RotateSprite(Vector2 direction)
     {
         if (direction.x > 0)
         {
@@ -76,7 +77,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void SmoothMove()
+    protected void SmoothMove()
     {
         transform.position = Vector3.SmoothDamp(transform.position, moveToPosition, ref velocity, smoothSpeed);
     }
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour
         SmoothMove();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "EnemyBullet" && invulnerabilityTimer <= 0)
         {
@@ -106,5 +107,10 @@ public class Player : MonoBehaviour
 
             invulnerabilityTimer = invulnerabilityCooldown;
         }
+    }
+
+    protected virtual void OnFire()
+    {
+        print("you attacked");
     }
 }

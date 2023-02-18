@@ -11,6 +11,10 @@ public class Attack : MonoBehaviour
     protected float lifetime = 10;
     protected float timer;
 
+    public enum AttackDirection {
+        left, right
+    }
+
     public void TickTimer()
     {
         timer -= Time.deltaTime;
