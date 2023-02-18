@@ -15,12 +15,14 @@ public class BulletManager : MonoBehaviour
         {
             if (!bullets[i].activeSelf)
             {
-                var b = bullets[i].GetComponent<Bullet>();
-                b.timer = b.lifeTime;
-                bullets[i].SetActive(true);
-                return bullets[i];
+                GameObject availableBullet = bullets[i];
+                var b = availableBullet.GetComponent<Bullet>();
+                b.ResetTimer();
+                availableBullet.SetActive(true);
+                return availableBullet;
             }
         }
+
         return null;
     }
 
@@ -28,9 +30,16 @@ public class BulletManager : MonoBehaviour
     {
         for (int i = 0; i < bullets.Count; i++)
         {
-            if (!bullets[i].activeSelf && bullets[i].GetComponent<Bullet>().type == type)
-                return bullets[i];
+            if (!bullets[i].activeSelf && bullets[i].GetComponent<Bullet>().GetBulletType() == type)
+            {
+                GameObject availableBullet = bullets[i];
+                var b = availableBullet.GetComponent<Bullet>();
+                b.ResetTimer();
+                availableBullet.SetActive(true);
+                return availableBullet;
+            }
         }
+
         return null;
     }
 }

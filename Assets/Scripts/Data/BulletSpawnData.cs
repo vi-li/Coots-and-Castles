@@ -8,9 +8,12 @@ public class BulletSpawnData : ScriptableObject
     public float minRotation;
     public float maxRotation;
     public bool isRandom;
-    public bool isParent = true;
+    public bool isNotParent = true;
     public float cooldown;
+
     public Vector2 bulletVelocity;
     public float bulletSpeed;
-    public float damage;
+    public float bulletDamage;
+    public float bulletLifetime;
+    public string bulletType;
 }

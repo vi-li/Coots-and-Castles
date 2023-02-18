@@ -8,8 +8,8 @@ public class BulletSpawner : MonoBehaviour
     public int index = 0;
     public bool isSequenceRandom;
     public bool spawnAutomatically;
-    float timer;
-    float[] rotations;
+    private float timer;
+    private float[] rotations;
 
     void Start()
     {
@@ -70,14 +70,14 @@ public class BulletSpawner : MonoBehaviour
             var fractionOfDifference = fraction * difference;
             rotations[i] = fractionOfDifference + GetSpawnData().minRotation; // We add minRotation to undo Difference
         }
-        foreach (var r in rotations) print(r);
         return rotations;
     }
 
     public GameObject[] SpawnBullets()
     {
-        rotations = new float[GetSpawnData().numberOfBullets];
-        if (GetSpawnData().isRandom)
+        BulletSpawnData spawnData = GetSpawnData();
+        rotations = new float[spawnData.numberOfBullets];
+        if (spawnData.isRandom)
         {
             RandomRotations();
         } else
@@ -86,26 +86,29 @@ public class BulletSpawner : MonoBehaviour
         }
 
         // Spawn Bullets
-        GameObject[] spawnedBullets = new GameObject[GetSpawnData().numberOfBullets];
-        for (int i = 0; i < GetSpawnData().numberOfBullets; i++)
+        GameObject[] spawnedBullets = new GameObject[spawnData.numberOfBullets];
+        for (int i = 0; i < spawnData.numberOfBullets; i++)
         {
-            spawnedBullets[i] = BulletManager.GetBulletFromPool();
+            spawnedBullets[i] = BulletManager.GetBulletFromPoolWithType(spawnData.bulletType);
             if (spawnedBullets[i] == null)
             {
-                spawnedBullets[i] = Instantiate(GetSpawnData().bulletResource, transform);
+                spawnedBullets[i] = Instantiate(spawnData.bulletResource, transform);
                 BulletManager.bullets.Add(spawnedBullets[i]);
             } else
             {
                 spawnedBullets[i].transform.SetParent(transform);
-                spawnedBullets[i].transform.localPosition = Vector2.zero;
             }
 
-            var b = spawnedBullets[i].GetComponent<Bullet>();
-            b.rotation = rotations[i];
-            b.speed = GetSpawnData().bulletSpeed;
-            b.velocity = GetSpawnData().bulletVelocity;
+            spawnedBullets[i].transform.localPosition = Vector2.zero;
 
-            if (!GetSpawnData().isParent)
+            var b = spawnedBullets[i].GetComponent<Bullet>();
+            b.SetRotation(rotations[i]);
+            b.SetSpeed(spawnData.bulletSpeed);
+            b.SetVelocity(spawnData.bulletVelocity);
+            b.SetDamage(spawnData.bulletDamage);
+            b.SetLifetime(spawnData.bulletLifetime);
+
+            if (spawnData.isNotParent)
             {
                 spawnedBullets[i].transform.SetParent(null);
             }

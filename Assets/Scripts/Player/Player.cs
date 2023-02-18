@@ -15,11 +15,12 @@ public class Player : MonoBehaviour
     private float smoothSpeed = 10.0f;
     private Vector3 moveToPosition;
     private Vector3 velocity = Vector3.zero;
+    private SpriteRenderer spriteRenderer;
 
     public float startHp;
-    float hp;
-    public float bulletCooldown;
-    float bulletTimer;
+    private float hp;
+    public float invulnerabilityCooldown;
+    public float invulnerabilityTimer;
     
     private void Awake() {
         controls = new PlayerMovement();
@@ -38,15 +39,9 @@ public class Player : MonoBehaviour
         moveToPosition = transform.position;
         controls.Main.Movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
         hp = startHp;
-    }
+        invulnerabilityTimer = 0;
 
-    private void Move(Vector2 direction)
-    {
-        if (CanMove(direction))
-        {
-            moveToPosition = moveToPosition + (Vector3)direction;
-        }
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private bool CanMove(Vector2 direction)
@@ -60,23 +55,56 @@ public class Player : MonoBehaviour
         return true;
     }
 
+    private void Move(Vector2 direction)
+    {
+        if (CanMove(direction))
+        {
+            moveToPosition = moveToPosition + (Vector3)direction;
+        }
+        
+        RotateSprite(direction);
+    }
+
+    private void RotateSprite(Vector2 direction)
+    {
+        if (direction.x > 0)
+        {
+            spriteRenderer.flipX = true;
+        } else if (direction.x < 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
+
+    private void SmoothMove()
+    {
+        transform.position = Vector3.SmoothDamp(transform.position, moveToPosition, ref velocity, smoothSpeed);
+    }
+
     void Update()
     {
-        if (bulletTimer > 0)
+        if (invulnerabilityTimer > 0)
         {
-            bulletTimer -= Time.deltaTime;
+            invulnerabilityTimer -= Time.deltaTime;
         }
 
-        transform.position = Vector3.SmoothDamp(transform.position, moveToPosition, ref velocity, smoothSpeed);
+        SmoothMove();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Bullet" && bulletTimer <= 0)
+        if (collision.tag == "EnemyBullet" && invulnerabilityTimer <= 0)
         {
-            hp -= collision.gameObject.GetComponent<Bullet>().damage;
-            print(hp);
-            bulletTimer = bulletCooldown;
+            float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
+            hp -= damage;
+            print("Health: " + hp);
+
+            if (hp <= 0)
+            {
+                print("you died");
+            }
+
+            invulnerabilityTimer = invulnerabilityCooldown;
         }
     }
 }
