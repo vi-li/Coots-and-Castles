@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print("set enemy hp");
         hp = startHp;
     }
 

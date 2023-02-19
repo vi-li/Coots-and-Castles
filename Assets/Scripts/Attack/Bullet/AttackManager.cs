@@ -1,22 +1,22 @@
 using UnityEngine;
 using System.Collections.Generic;
-public class BulletManager : MonoBehaviour
+public class AttackManager : MonoBehaviour
 {
-    public static List<GameObject> bullets;
+    public static List<GameObject> attacks;
 
     private void Start()
     {
-        bullets = new List<GameObject>();
+        attacks = new List<GameObject>();
     }
 
     public static GameObject GetBulletFromPool()
     {
-        for (int i = 0; i < bullets.Count; i++)
+        for (int i = 0; i < attacks.Count; i++)
         {
-            if (!bullets[i].activeSelf)
+            if (!attacks[i].activeSelf)
             {
-                GameObject availableBullet = bullets[i];
-                var b = availableBullet.GetComponent<Bullet>();
+                GameObject availableBullet = attacks[i];
+                var b = availableBullet.GetComponent<AttackBase>();
                 b.ResetTimer();
                 availableBullet.SetActive(true);
                 return availableBullet;
@@ -28,11 +28,11 @@ public class BulletManager : MonoBehaviour
 
     public static GameObject GetBulletFromPoolWithType(string type)
     {
-        for (int i = 0; i < bullets.Count; i++)
+        for (int i = 0; i < attacks.Count; i++)
         {
-            if (!bullets[i].activeSelf && bullets[i].GetComponent<Bullet>().GetBulletType() == type)
+            if (!attacks[i].activeSelf && attacks[i].GetComponent<Bullet>().GetAttackType() == type)
             {
-                GameObject availableBullet = bullets[i];
+                GameObject availableBullet = attacks[i];
                 var b = availableBullet.GetComponent<Bullet>();
                 b.ResetTimer();
                 availableBullet.SetActive(true);

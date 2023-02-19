@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class AttackBase : MonoBehaviour
 {
     protected Vector2 velocity;
     protected float speed;
     protected float rotation;
     protected float damage;
-    protected float lifetime = 10;
+    protected float lifetime;
     protected float timer;
+    public string type;
 
     public enum AttackDirection {
         left, right
@@ -88,5 +89,10 @@ public class Attack : MonoBehaviour
     public float GetTimer()
     {
         return timer;
+    }
+
+    public string GetAttackType()
+    {
+        return type;
     }
 }
