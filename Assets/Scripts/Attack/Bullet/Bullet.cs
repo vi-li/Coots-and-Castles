@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : Attack
+public class Bullet : AttackBase
 {
-    public string type;
     public bool oneTimeUse = true;
 
     void Start()
@@ -17,16 +16,6 @@ public class Bullet : Attack
     {
         DeltaMoveWithSpeed();
         TickTimer();
-    }
-
-    public void SetBulletType(string type)
-    {
-        this.type = type;
-    }
-
-    public string GetBulletType()
-    {
-        return type;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

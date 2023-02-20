@@ -5,17 +5,6 @@ using UnityEngine;
 public class PawnPlayer : Player
 {
     public Slash slash;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     protected override void OnFire()
     {
@@ -24,7 +13,6 @@ public class PawnPlayer : Player
 
     private void Attack()
     {
-        print("pawnplayer slashed");
-        slash.SlashAttack();
+        print("PawnPlayer attacked");
     }
 }

@@ -2,46 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slash : Attack
+public class Slash : AttackBase
 {
-    public AttackDirection attackDirection;
-    private Vector2 rightAttackOffset;
-    private Collider2D slashCollider;
+    //public AttackDirection attackDirection;
+    //private Vector2 rightAttackOffset;
 
     // Start is called before the first frame update
     void Start()
     {
-        slashCollider = GetComponent<Collider2D>();
-        rightAttackOffset = transform.position;        
+        lifetime = 0.5f;
+        timer = lifetime;
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 
-    public void SlashAttack()
+    void Update()
     {
-        switch(attackDirection)
-        {
-            case AttackDirection.left:
-                AttackLeft();
-                break;
-            case AttackDirection.right:
-                AttackRight();
-                break;
-        }
+        TickTimer();
     }
 
-    private void AttackRight()
-    {
-        slashCollider.enabled = true;
-        transform.position = rightAttackOffset;
-    }
+    // public void SlashAttack()
+    // {
+    //     // To be used in the case of attacking different sides
+    //     switch(attackDirection)
+    //     {
+    //         case AttackDirection.left:
+    //             AttackLeft();
+    //             break;
+    //         case AttackDirection.right:
+    //             AttackRight();
+    //             break;
+    //     }
+    //     print("slash started");
+    //     slashCollider.enabled = true;
+    // }
 
-    private void AttackLeft()
-    {
-        slashCollider.enabled = true;
-        transform.position = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
-    }
+    // To be used in the case of attacking different sides
+    // private void AttackRight()
+    // {
+    //     slashCollider.enabled = true;
+    //     transform.position = rightAttackOffset;
+    // }
 
-    public void StopAttack()
-    {
-        slashCollider.enabled = false;
-    }
+    // private void AttackLeft()
+    // {
+    //     slashCollider.enabled = true;
+    //     transform.position = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
+    // }
+
+    // public void StopAttack()
+    // {
+    //     print("slash stopped");
+    //     slashCollider.enabled = false;
+    // }
 }

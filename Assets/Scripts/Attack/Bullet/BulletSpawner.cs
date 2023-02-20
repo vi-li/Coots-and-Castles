@@ -89,11 +89,11 @@ public class BulletSpawner : MonoBehaviour
         GameObject[] spawnedBullets = new GameObject[spawnData.numberOfBullets];
         for (int i = 0; i < spawnData.numberOfBullets; i++)
         {
-            spawnedBullets[i] = BulletManager.GetBulletFromPoolWithType(spawnData.bulletType);
+            spawnedBullets[i] = AttackManager.GetBulletFromPoolWithType(spawnData.bulletType);
             if (spawnedBullets[i] == null)
             {
                 spawnedBullets[i] = Instantiate(spawnData.bulletResource, transform);
-                BulletManager.bullets.Add(spawnedBullets[i]);
+                AttackManager.attacks.Add(spawnedBullets[i]);
             } else
             {
                 spawnedBullets[i].transform.SetParent(transform);

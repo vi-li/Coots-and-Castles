@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     protected Vector3 moveToPosition;
     protected Vector3 velocity = Vector3.zero;
     protected SpriteRenderer spriteRenderer;
+    protected Direction facingDirection;
 
     public float startHp;
     public float hp;
@@ -28,6 +29,11 @@ public class Player : MonoBehaviour
         BISHOP,
         QUEEN,
         KNIGHT
+    public PlayerType playerType;
+
+    protected enum Direction {
+        left, right, up, down
+    }
     }
     private void Awake() {
         controls = new PlayerMovement();
@@ -47,6 +53,7 @@ public class Player : MonoBehaviour
         controls.Main.Fire.performed += ctx => OnFire();
         moveToPosition = transform.position;
         hp = startHp;
+        print("set player hp " + hp + " " + startHp);
         invulnerabilityTimer = 0;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -69,18 +76,61 @@ public class Player : MonoBehaviour
         {
             moveToPosition = moveToPosition + (Vector3)direction;
         }
-        
-        RotateSprite(direction);
+
+        Rotate(direction);
     }
 
-    protected void RotateSprite(Vector2 direction)
+    protected void Rotate(Vector2 direction)
     {
         if (direction.x > 0)
         {
-            spriteRenderer.flipX = true;
+            facingDirection = Direction.right;
         } else if (direction.x < 0)
         {
-            spriteRenderer.flipX = false;
+            facingDirection = Direction.left;
+        } else if (direction.y > 0)
+        {
+            facingDirection = Direction.up;
+        } else
+        {
+            facingDirection = Direction.down;
+        }
+
+        UpdatePlayerRotation();
+        //UpdateSpriteRenderer();
+    }
+
+    // To be used in the case of "front-facing" sprites
+    protected void UpdateSpriteRenderer()
+    {
+        switch (facingDirection)
+        {
+            case(Direction.right):
+                spriteRenderer.flipX = true;
+                break;
+            case(Direction.left):
+                spriteRenderer.flipX = false;
+                break;
+        }
+    }
+
+    // To be used in the case of "top-down" sprites
+    protected void UpdatePlayerRotation()
+    {
+        switch (facingDirection)
+        {
+            case(Direction.right):
+                transform.eulerAngles = new Vector3(0, 0, 270);
+                break;
+            case(Direction.up):
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                break;
+            case(Direction.left):
+                transform.eulerAngles = new Vector3(0, 0, 90);
+                break;
+            case(Direction.down):
+                transform.eulerAngles = new Vector3(0, 0, 180);
+                break;
         }
     }
 
@@ -103,10 +153,11 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "EnemyBullet")
         {
-            if (invulnerabilityTimer <= 0){
-                float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
-                hp -= damage;
-                print("Health: " + hp);
+            print(collision);
+            float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
+            print(damage);
+            hp -= damage;
+            print("Health: " + hp);
 
                 if (hp <= 0)
                 {

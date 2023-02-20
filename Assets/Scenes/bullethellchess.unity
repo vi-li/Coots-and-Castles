@@ -1514,12 +1514,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290884057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0.38, y: -0.23000002, z: -1}
+  m_LocalScale: {x: 3, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1902635085}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1290884059
 MonoBehaviour:
@@ -1533,7 +1533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aae952e85444a4bb6ee0de675811e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDirection: 0
+  type: 
 --- !u!61 &1290884060
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1573,7 +1573,7 @@ GameObject:
   - component: {fileID: 1599278566}
   m_Layer: 0
   m_Name: slash
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2614,7 +2614,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902635081}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9edec56b4c837624dbb5bcdc6bb19da2, type: 3}
   m_Name: 
@@ -2626,6 +2626,7 @@ MonoBehaviour:
   hp: 0
   invulnerabilityCooldown: 1
   invulnerabilityTimer: 0
+  playerType: {fileID: 0}
 --- !u!4 &1902635085
 Transform:
   m_ObjectHideFlags: 0
@@ -2637,8 +2638,7 @@ Transform:
   m_LocalPosition: {x: 0.38, y: -1.23, z: -1}
   m_LocalScale: {x: 10, y: 10, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1290884058}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2727,4 +2727,5 @@ MonoBehaviour:
   startHp: 10
   invulnerabilityCooldown: 1
   invulnerabilityTimer: 0
+  playerType: {fileID: 0}
   slash: {fileID: 1290884059}
