@@ -171,7 +171,6 @@ public class Player : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        print("player collided");
         if (collision.tag == "EnemyAttack" && invulnerabilityTimer <= 0)
         {
             float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();

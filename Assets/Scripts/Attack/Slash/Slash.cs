@@ -14,9 +14,4 @@ public class Slash : AttackBase
     {
         TickTimer();
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        print("slash collided");
-    }
 }

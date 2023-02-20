@@ -24,6 +24,8 @@ public class PawnPlayer : Player
                 AttackManager.attacks.Add(spawnedSlash);
             }
 
+            spawnedSlash.tag = "PlayerAttack";
+
             spawnedSlash.transform.SetParent(transform);
             spawnedSlash.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
             spawnedSlash.transform.localPosition = new Vector2(0, 1 / transform.localScale.y);
