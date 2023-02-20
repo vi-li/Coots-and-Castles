@@ -18,10 +18,17 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public float startHp;
-    private float hp;
+    public float hp;
     public float invulnerabilityCooldown;
     public float invulnerabilityTimer;
-    
+    public float transformTimer;
+    public PlayerType piece;
+    public enum PlayerType{
+        ROOK,
+        BISHOP,
+        QUEEN,
+        KNIGHT
+    }
     private void Awake() {
         controls = new PlayerMovement();
     }
@@ -93,18 +100,20 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "EnemyBullet" && invulnerabilityTimer <= 0)
+        if (collision.tag == "EnemyBullet")
         {
-            float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
-            hp -= damage;
-            print("Health: " + hp);
+            if (invulnerabilityTimer <= 0){
+                float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
+                hp -= damage;
+                print("Health: " + hp);
 
-            if (hp <= 0)
-            {
-                print("you died");
+                if (hp <= 0)
+                {
+                    print("you died");
+                }
+
+                invulnerabilityTimer = invulnerabilityCooldown;
             }
-
-            invulnerabilityTimer = invulnerabilityCooldown;
         }
     }
 }
