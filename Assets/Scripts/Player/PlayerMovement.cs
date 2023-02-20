@@ -32,7 +32,16 @@ public partial class @PlayerMovement : IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""9df50e3c-356c-4b25-87f7-3d853b0000ab"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector3"",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb25f758-8057-45e6-86e2-41e57a5f747d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 }
@@ -92,6 +101,17 @@ public partial class @PlayerMovement : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3877ee87-1ce4-43c3-85df-77ad3d40df10"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +121,7 @@ public partial class @PlayerMovement : IInputActionCollection2, IDisposable
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_Movement = m_Main.FindAction("Movement", throwIfNotFound: true);
+        m_Main_Fire = m_Main.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,11 +182,13 @@ public partial class @PlayerMovement : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Main;
     private IMainActions m_MainActionsCallbackInterface;
     private readonly InputAction m_Main_Movement;
+    private readonly InputAction m_Main_Fire;
     public struct MainActions
     {
         private @PlayerMovement m_Wrapper;
         public MainActions(@PlayerMovement wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Main_Movement;
+        public InputAction @Fire => m_Wrapper.m_Main_Fire;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -178,6 +201,9 @@ public partial class @PlayerMovement : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
+                @Fire.started -= m_Wrapper.m_MainActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnFire;
             }
             m_Wrapper.m_MainActionsCallbackInterface = instance;
             if (instance != null)
@@ -185,6 +211,9 @@ public partial class @PlayerMovement : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
         }
     }
@@ -192,5 +221,6 @@ public partial class @PlayerMovement : IInputActionCollection2, IDisposable
     public interface IMainActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
 }
