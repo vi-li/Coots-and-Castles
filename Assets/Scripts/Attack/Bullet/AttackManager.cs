@@ -9,34 +9,17 @@ public class AttackManager : MonoBehaviour
         attacks = new List<GameObject>();
     }
 
-    public static GameObject GetBulletFromPool()
+    public static GameObject GetAttackFromPoolWithType(string specificType)
     {
         for (int i = 0; i < attacks.Count; i++)
         {
-            if (!attacks[i].activeSelf)
+            if (!attacks[i].activeSelf && attacks[i].GetComponent<AttackBase>().GetAttackType() == specificType)
             {
-                GameObject availableBullet = attacks[i];
-                var b = availableBullet.GetComponent<AttackBase>();
+                GameObject availableAttack = attacks[i];
+                var b = availableAttack.GetComponent<AttackBase>();
                 b.ResetTimer();
-                availableBullet.SetActive(true);
-                return availableBullet;
-            }
-        }
-
-        return null;
-    }
-
-    public static GameObject GetBulletFromPoolWithType(string type)
-    {
-        for (int i = 0; i < attacks.Count; i++)
-        {
-            if (!attacks[i].activeSelf && attacks[i].GetComponent<Bullet>().GetAttackType() == type)
-            {
-                GameObject availableBullet = attacks[i];
-                var b = availableBullet.GetComponent<Bullet>();
-                b.ResetTimer();
-                availableBullet.SetActive(true);
-                return availableBullet;
+                availableAttack.SetActive(true);
+                return availableAttack;
             }
         }
 

@@ -5,7 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float startHp;
-    private float hp;
+    public float hp;
+
+    public float invulnerabilityCooldown;
+    public float invulnerabilityTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -14,17 +17,24 @@ public class Enemy : MonoBehaviour
         hp = startHp;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        TickTimer();
+    }
+
+    private void TickTimer()
+    {
+        if (invulnerabilityTimer > 0)
+        {
+            invulnerabilityTimer -= Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "PlayerBullet")
+        if (collision.tag == "PlayerAttack" && invulnerabilityTimer <= 0)
         {
-            float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
+            float damage = collision.gameObject.GetComponent<AttackBase>().GetDamage();
             hp -= damage;
             print("Enemy Health: " + hp);
 
@@ -32,6 +42,8 @@ public class Enemy : MonoBehaviour
             {
                 print("Enemy died");
             }
+
+            invulnerabilityTimer = invulnerabilityCooldown;
         }
     }
 }

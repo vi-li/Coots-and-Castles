@@ -20,9 +20,12 @@ public class Player : MonoBehaviour
 
     public float startHp;
     protected float hp;
+
     public float invulnerabilityCooldown;
     public float invulnerabilityTimer;
-    public PlayerType playerType;
+    public float abilityCooldown;
+    public float abilityTimer;
+    //public PlayerType playerType;
 
     protected enum Direction {
         left, right, up, down
@@ -45,11 +48,33 @@ public class Player : MonoBehaviour
         controls.Main.Movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
         controls.Main.Fire.performed += ctx => OnFire();
         moveToPosition = transform.position;
+
         hp = startHp;
         print("set player hp " + hp + " " + startHp);
+
         invulnerabilityTimer = 0;
+        abilityTimer = 0;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    
+    void Update()
+    {
+        TickTimer();
+        SmoothMove();
+    }
+
+    private void TickTimer()
+    {
+        if (invulnerabilityTimer > 0)
+        {
+            invulnerabilityTimer -= Time.deltaTime;
+        }
+
+        if (abilityTimer > 0)
+        {
+            abilityTimer -= Time.deltaTime;
+        }
     }
 
     protected bool CanMove(Vector2 direction)
@@ -132,19 +157,10 @@ public class Player : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, moveToPosition, ref velocity, smoothSpeed);
     }
 
-    void Update()
-    {
-        if (invulnerabilityTimer > 0)
-        {
-            invulnerabilityTimer -= Time.deltaTime;
-        }
-
-        SmoothMove();
-    }
-
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "EnemyBullet" && invulnerabilityTimer <= 0)
+        print("player collided");
+        if (collision.tag == "EnemyAttack" && invulnerabilityTimer <= 0)
         {
             print(collision);
             float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
@@ -163,6 +179,10 @@ public class Player : MonoBehaviour
 
     protected virtual void OnFire()
     {
-        print("you attacked");
+        if (abilityTimer <= 0)
+        {
+            print("playerBase attack");
+            abilityTimer = abilityCooldown;
+        }
     }
 }

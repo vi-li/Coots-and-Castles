@@ -8,12 +8,12 @@ public class BulletSpawner : MonoBehaviour
     public int index = 0;
     public bool isSequenceRandom;
     public bool spawnAutomatically;
-    private float timer;
+    private float cooldown;
     private float[] rotations;
 
     void Start()
     {
-        timer = GetSpawnData().cooldown;
+        cooldown = GetSpawnData().cooldown;
     }
 
     // Update is called once per frame
@@ -21,10 +21,10 @@ public class BulletSpawner : MonoBehaviour
     {
         if (spawnAutomatically)
         {
-            if (timer <= 0)
+            if (cooldown <= 0)
             {
                 SpawnBullets();
-                timer = GetSpawnData().cooldown;
+                cooldown = GetSpawnData().cooldown;
                 if (isSequenceRandom)
                 {
                     index = Random.Range(0, spawnDatas.Length);
@@ -38,9 +38,9 @@ public class BulletSpawner : MonoBehaviour
 
             }
 
-            if (timer > 0)
+            if (cooldown > 0)
             {
-                timer -= Time.deltaTime;
+                cooldown -= Time.deltaTime;
             }
         }
     }
@@ -73,7 +73,7 @@ public class BulletSpawner : MonoBehaviour
         return rotations;
     }
 
-    public GameObject[] SpawnBullets()
+    public void SpawnBullets()
     {
         BulletSpawnData spawnData = GetSpawnData();
         rotations = new float[spawnData.numberOfBullets];
@@ -89,7 +89,7 @@ public class BulletSpawner : MonoBehaviour
         GameObject[] spawnedBullets = new GameObject[spawnData.numberOfBullets];
         for (int i = 0; i < spawnData.numberOfBullets; i++)
         {
-            spawnedBullets[i] = AttackManager.GetBulletFromPoolWithType(spawnData.bulletType);
+            spawnedBullets[i] = AttackManager.GetAttackFromPoolWithType(spawnData.bulletType);
             if (spawnedBullets[i] == null)
             {
                 spawnedBullets[i] = Instantiate(spawnData.bulletResource, transform);
@@ -113,7 +113,5 @@ public class BulletSpawner : MonoBehaviour
                 spawnedBullets[i].transform.SetParent(null);
             }
         }
-
-        return spawnedBullets;
     }
 }

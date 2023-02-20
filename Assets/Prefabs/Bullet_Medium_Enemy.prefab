@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1881179349174620744}
   m_Layer: 0
   m_Name: Bullet_Medium_Enemy
-  m_TagString: EnemyBullet
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Medium
+  oneTimeUse: 1
 --- !u!58 &1881179349174620744
 CircleCollider2D:
   m_ObjectHideFlags: 0
