@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     protected Direction facingDirection;
 
     public float startHp;
+<<<<<<< HEAD
     protected float hp;
 
     public float invulnerabilityCooldown;
@@ -26,12 +27,25 @@ public class Player : MonoBehaviour
     public float abilityCooldown;
     public float abilityTimer;
     //public PlayerType playerType;
+=======
+    public float hp;
+    public float invulnerabilityCooldown;
+    public float invulnerabilityTimer;
+    public float transformTimer;
+    public PlayerType piece;
+    public enum PlayerType{
+        ROOK,
+        BISHOP,
+        QUEEN,
+        KNIGHT
+    public PlayerType playerType;
+>>>>>>> 089c0aedfe43fa826f808f89747d65283c0d2110
 
     protected enum Direction {
         left, right, up, down
     }
-    
-    protected void Awake() {
+    }
+    private void Awake() {
         controls = new PlayerMovement();
     }
 
@@ -168,12 +182,13 @@ public class Player : MonoBehaviour
             hp -= damage;
             print("Health: " + hp);
 
-            if (hp <= 0)
-            {
-                print("you died");
-            }
+                if (hp <= 0)
+                {
+                    print("you died");
+                }
 
-            invulnerabilityTimer = invulnerabilityCooldown;
+                invulnerabilityTimer = invulnerabilityCooldown;
+            }
         }
     }
 
