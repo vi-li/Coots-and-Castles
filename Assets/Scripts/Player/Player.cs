@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     public float abilityTimer;
     public float transformTimer;
     public PlayerType piece;
-
+    public GameController control;
     public enum PlayerType{
         ROOK,
         BISHOP,
@@ -71,6 +71,9 @@ public class Player : MonoBehaviour
     {
         TickTimer();
         SmoothMove();
+        if(hp <= 0){
+            control.GameOver();
+        }
     }
 
     private void TickTimer()
