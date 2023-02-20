@@ -19,31 +19,26 @@ public class Player : MonoBehaviour
     protected Direction facingDirection;
 
     public float startHp;
-<<<<<<< HEAD
-    protected float hp;
+    public float hp;
+
+    public PlayerType playerType;
 
     public float invulnerabilityCooldown;
     public float invulnerabilityTimer;
     public float abilityCooldown;
     public float abilityTimer;
-    //public PlayerType playerType;
-=======
-    public float hp;
-    public float invulnerabilityCooldown;
-    public float invulnerabilityTimer;
     public float transformTimer;
     public PlayerType piece;
+
     public enum PlayerType{
         ROOK,
         BISHOP,
         QUEEN,
         KNIGHT
-    public PlayerType playerType;
->>>>>>> 089c0aedfe43fa826f808f89747d65283c0d2110
+    }
 
     protected enum Direction {
         left, right, up, down
-    }
     }
     private void Awake() {
         controls = new PlayerMovement();
@@ -176,19 +171,16 @@ public class Player : MonoBehaviour
         print("player collided");
         if (collision.tag == "EnemyAttack" && invulnerabilityTimer <= 0)
         {
-            print(collision);
             float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
-            print(damage);
             hp -= damage;
             print("Health: " + hp);
 
-                if (hp <= 0)
-                {
-                    print("you died");
-                }
-
-                invulnerabilityTimer = invulnerabilityCooldown;
+            if (hp <= 0)
+            {
+                print("you died");
             }
+
+            invulnerabilityTimer = invulnerabilityCooldown;
         }
     }
 

@@ -8,7 +8,8 @@ public class Heal : PowerupEffect
 {
     public float amount;
 
-    public override void Apply(GameObject target){
+    public override void Apply(GameObject target)
+    {
         float HP = target.GetComponent<Player>().hp;
         float startHP = target.GetComponent<Player>().startHp;
         HP += amount;
@@ -18,5 +19,4 @@ public class Heal : PowerupEffect
         target.GetComponent<Player>().hp = HP;
         Debug.Log(target.GetComponent<Player>().hp);
     }
-    
 }
