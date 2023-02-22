@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
-  m_Name: AttackRowCol
+  m_Name: Queen_Attack_Enemy
   m_EditorClassIdentifier: 
-  attackResource: {fileID: 1881179349174620747, guid: cc987ab9358116d4182d158eee7584c9, type: 3}
-  cooldown: 2
-  damage: 2
+  attackResource: {fileID: 6271565721240947822, guid: eb1523fdc5d4c7c45ad43c1a844bc84f, type: 3}
+  cooldown: 3
+  damage: 3
   lifetime: 5
-  type: Bullet_Medium_Enemy
+  type: Bullet_Large_Enemy
   bulletVelocity: {x: 1, y: 0}
-  bulletSpeed: 2
-  bulletCount: 4
+  bulletSpeed: 3
+  bulletCount: 8
   minRotation: 0
-  maxRotation: 270
+  maxRotation: 315
   isRandom: 0
   isNotParent: 1

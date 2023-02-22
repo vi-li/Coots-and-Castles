@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackResource: {fileID: 6271565721240947822, guid: eb1523fdc5d4c7c45ad43c1a844bc84f, type: 3}
   cooldown: 2
-  damage: 3
+  damage: 1
   lifetime: 5
   type: Bullet_Large_Enemy
   bulletVelocity: {x: 1, y: 0}

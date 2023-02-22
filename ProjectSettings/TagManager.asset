@@ -7,6 +7,7 @@ TagManager:
   - EnemyAttack
   - PlayerAttack
   - Enemy
+  - Upgrade
   layers:
   - Default
   - TransparentFX
@@ -50,8 +51,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Enemy
+    uniqueID: 3151990893
+    locked: 0
   - name: Player
     uniqueID: 3931001423
+    locked: 0
+  - name: Upgrades
+    uniqueID: 3795293967
     locked: 0
   - name: Bullets
     uniqueID: 3530628813

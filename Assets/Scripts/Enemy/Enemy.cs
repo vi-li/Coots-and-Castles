@@ -40,10 +40,16 @@ public class Enemy : MonoBehaviour
             if (hp <= 0)
             {
                 print("Enemy died");
-                gameObject.SetActive(false);
+                Death();
             }
 
             invulnerabilityTimer = invulnerabilityCooldown;
         }
+    }
+
+    private void Death()
+    {
+        gameObject.GetComponent<DropUpgrades>().Drop();
+        gameObject.SetActive(false);
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
-  m_Name: AttackDiagonal
+  m_Name: Bishop_Attack_Enemy
   m_EditorClassIdentifier: 
   attackResource: {fileID: 1881179349174620747, guid: 2d78e8ef4be08f245a911d8954585291, type: 3}
   cooldown: 5
