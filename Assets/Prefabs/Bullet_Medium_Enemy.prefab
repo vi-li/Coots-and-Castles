@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ede0a219f08f54ebcd1e04ad9ca33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Medium
+  type: Bullet_Medium_Enemy
   oneTimeUse: 1
 --- !u!58 &1881179349174620744
 CircleCollider2D:

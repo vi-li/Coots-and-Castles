@@ -20,7 +20,7 @@ public class Bullet : AttackBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && oneTimeUse)
+        if (gameObject.tag != "PlayerAttack" && collision.tag == "Player" && oneTimeUse)
         {
             gameObject.SetActive(false);
         }

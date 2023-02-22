@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("set enemy hp");
         hp = startHp;
     }
 
@@ -41,6 +40,7 @@ public class Enemy : MonoBehaviour
             if (hp <= 0)
             {
                 print("Enemy died");
+                gameObject.SetActive(false);
             }
 
             invulnerabilityTimer = invulnerabilityCooldown;

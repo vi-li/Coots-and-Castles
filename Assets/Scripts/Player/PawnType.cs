@@ -1,26 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PawnPlayer : Player
+public class PawnType : PieceType
 {
     public SlashSpawnData spawnData;
-    public float cooldown = 0.5f;
 
-    protected override void OnFire()
+    private void Start()
     {
-        Attack();
+        abilityTimer = 0;
+        player = gameObject.GetComponent<Player>();
     }
 
-    private void Attack()
+    public override void Attack()
     {
         if (abilityTimer <= 0)
         {
-            GameObject spawnedSlash = AttackManager.GetAttackFromPoolWithType(spawnData.slashType);
+            GameObject spawnedSlash = AttackManager.GetAttackFromPoolWithType(spawnData.type);
 
             if (spawnedSlash == null)
             {
-                spawnedSlash = Instantiate(spawnData.slashResource);
+                spawnedSlash = Instantiate(spawnData.attackResource);
                 AttackManager.attacks.Add(spawnedSlash);
             }
 
@@ -33,8 +34,8 @@ public class PawnPlayer : Player
             spawnedSlash.transform.SetParent(null);
 
             var slash = spawnedSlash.GetComponent<Slash>();
-            slash.SetLifetime(spawnData.slashLifetime);
-            slash.SetDamage(spawnData.slashDamage);
+            slash.SetLifetime(spawnData.lifetime);
+            slash.SetDamage(spawnData.damage);
 
             abilityTimer = abilityCooldown;
         }   

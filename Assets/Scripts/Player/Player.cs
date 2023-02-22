@@ -21,20 +21,20 @@ public class Player : MonoBehaviour
     public float startHp;
     public float hp;
 
-    public PlayerType playerType;
-
     public float invulnerabilityCooldown;
     public float invulnerabilityTimer;
-    public float abilityCooldown;
-    public float abilityTimer;
     public float transformTimer;
+
     public PlayerType piece;
     public GameController control;
-    public enum PlayerType{
+
+    public enum PlayerType
+    {
+        PAWN,
+        KNIGHT,
         ROOK,
         BISHOP,
         QUEEN,
-        KNIGHT
     }
 
     protected enum Direction {
@@ -62,7 +62,6 @@ public class Player : MonoBehaviour
         print("set player hp " + hp + " " + startHp);
 
         invulnerabilityTimer = 0;
-        abilityTimer = 0;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -71,9 +70,6 @@ public class Player : MonoBehaviour
     {
         TickTimer();
         SmoothMove();
-        if(hp <= 0){
-            control.GameOver();
-        }
     }
 
     private void TickTimer()
@@ -81,11 +77,6 @@ public class Player : MonoBehaviour
         if (invulnerabilityTimer > 0)
         {
             invulnerabilityTimer -= Time.deltaTime;
-        }
-
-        if (abilityTimer > 0)
-        {
-            abilityTimer -= Time.deltaTime;
         }
     }
 
@@ -180,6 +171,7 @@ public class Player : MonoBehaviour
             if (hp <= 0)
             {
                 print("you died");
+                control.GameOver();
             }
 
             invulnerabilityTimer = invulnerabilityCooldown;
@@ -188,10 +180,6 @@ public class Player : MonoBehaviour
 
     protected virtual void OnFire()
     {
-        if (abilityTimer <= 0)
-        {
-            print("playerBase attack");
-            abilityTimer = abilityCooldown;
-        }
+        gameObject.GetComponent<PieceType>().Attack();
     }
 }

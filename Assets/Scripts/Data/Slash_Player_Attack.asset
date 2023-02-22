@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a567bdb545fc34c998a3d48639fb41, type: 3}
   m_Name: Slash_Player_Attack
   m_EditorClassIdentifier: 
-  slashResource: {fileID: 7685233434851944127, guid: cab53d3a3aa2c394aae7ba7bc68077a0, type: 3}
+  attackResource: {fileID: 7685233434851944127, guid: cab53d3a3aa2c394aae7ba7bc68077a0, type: 3}
   cooldown: 0.5
-  slashDamage: 2
-  slashLifetime: 0.5
-  slashType: Slash_Player
+  damage: 1
+  lifetime: 0.5
+  type: Slash_Player

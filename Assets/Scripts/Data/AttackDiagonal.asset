@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
   m_Name: AttackDiagonal
   m_EditorClassIdentifier: 
-  bulletResource: {fileID: 1881179349174620747, guid: 2d78e8ef4be08f245a911d8954585291, type: 3}
-  numberOfBullets: 4
+  attackResource: {fileID: 1881179349174620747, guid: 2d78e8ef4be08f245a911d8954585291, type: 3}
+  cooldown: 5
+  damage: 1
+  lifetime: 5
+  type: Bullet_Small_Enemy
+  bulletVelocity: {x: 1, y: 0}
+  bulletSpeed: 5
+  bulletCount: 4
   minRotation: 45
   maxRotation: 315
   isRandom: 0
   isNotParent: 1
-  cooldown: 5
-  bulletVelocity: {x: 1, y: 0}
-  bulletSpeed: 5
-  bulletDamage: 1
-  bulletLifetime: 10
-  bulletType: Small
