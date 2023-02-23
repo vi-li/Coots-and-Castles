@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rook_Attack_Player
   m_EditorClassIdentifier: 
   attackResource: {fileID: 3360812408633617247, guid: e643df8ffe1205946842ca16e22d89b4, type: 3}
-  cooldown: 0.5
+  cooldown: 0.25
   damage: 1
   lifetime: 5
   type: Bullet_Distinguished_Player
@@ -22,5 +22,6 @@ MonoBehaviour:
   bulletCount: 4
   minRotation: 0
   maxRotation: 270
+  specificRotations: []
   isRandom: 0
   isNotParent: 1

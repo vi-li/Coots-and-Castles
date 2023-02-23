@@ -12,7 +12,7 @@ public class RookType : PieceType
         abilityTimer = 0;
         player = gameObject.GetComponent<Player>();
 
-        bulletSpawner = gameObject.GetComponent<BulletSpawner>();
+        bulletSpawner = gameObject.AddComponent<BulletSpawner>();
         bulletSpawner.spawnDatas = new List<BulletSpawnData>();
 
         // Use Rook Attack Asset

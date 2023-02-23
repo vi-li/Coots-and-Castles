@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEditor;
 
 public class PawnType : PieceType
 {
@@ -11,6 +12,14 @@ public class PawnType : PieceType
     {
         abilityTimer = 0;
         player = gameObject.GetComponent<Player>();
+    }
+    
+    private void Awake() 
+    {
+        // Use Pawn Attack Asset
+        string[] assetGuids = AssetDatabase.FindAssets("Slash_Player_Attack");
+        string assetPath = AssetDatabase.GUIDToAssetPath(assetGuids[0]);
+        spawnData = (SlashSpawnData)AssetDatabase.LoadAssetAtPath(assetPath, typeof(SlashSpawnData));
     }
 
     public override void Attack()
@@ -36,6 +45,8 @@ public class PawnType : PieceType
             var slash = spawnedSlash.GetComponent<Slash>();
             slash.SetLifetime(spawnData.lifetime);
             slash.SetDamage(spawnData.damage);
+
+            spawnedSlash.SetActive(true);
 
             abilityTimer = abilityCooldown;
         }   

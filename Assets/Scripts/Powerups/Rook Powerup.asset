@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0716e1e4795c742be16f996e8197d4, type: 3}
   m_Name: Rook Powerup
   m_EditorClassIdentifier: 
-  amount: 0
   player: {fileID: 0}
+  transformTimeLimit: 10

@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Powerups/QueenPowerup")]
+[CreateAssetMenu(menuName = "Powerups/KnightPowerup")]
 public class KnightPowerup : PowerupEffect
 {
-   public float amount;
    public Player player;
-   public override void Apply(GameObject target){
+   public float transformTimeLimit;
+
+   public override void Apply(GameObject target)
+   {
       player = target.GetComponent<Player>();
+
       player.piece = Player.PlayerType.KNIGHT;
-      player.transformTimer = amount;
+      player.UpdatePieceTypeScript();
+
+      player.transformTimer = transformTimeLimit;
    }
 }

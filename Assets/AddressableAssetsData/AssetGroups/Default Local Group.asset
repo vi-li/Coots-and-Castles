@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c04d59b0a28d9a140a9fcee67a8c06f3
+  m_SerializeEntries:
+  - m_GUID: 3f5e48179a49a09428df741088a2ded6
+    m_Address: Assets/Sprites/Player/Knight_Light.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a818dce5d8e4be54a8ccf952f172996f
+    m_Address: Assets/Sprites/Player/Pawn_Light.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8366f0416d0a46d4daa62bbf4f2c040c
+    m_Address: Assets/Sprites/Player/Bishop_Light.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 74e2045b84cd60442a9404f56147efc5
+    m_Address: Assets/Sprites/Player/Rook_Light.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ce2ead0801be8bb4c8d255bfe7add0a6, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 366c421f1762a4d40a8fa7e66487bbac, type: 2}
+    - {fileID: 11400000, guid: 01bff246da3125f4bb64e662df7163ac, type: 2}

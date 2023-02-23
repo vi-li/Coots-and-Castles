@@ -8,6 +8,7 @@ public class BulletSpawner : MonoBehaviour
     public List<BulletSpawnData> spawnDatas;
     public int index = 0;
     public bool isSequenceRandom;
+    public List<float> specificRotations;
     public bool spawnAutomatically;
     private float cooldown;
     private float[] rotations;
@@ -15,6 +16,7 @@ public class BulletSpawner : MonoBehaviour
     void Start()
     {
         cooldown = GetSpawnData().cooldown;
+        specificRotations = GetSpawnData().specificRotations;
     }
 
     // Update is called once per frame
@@ -51,17 +53,16 @@ public class BulletSpawner : MonoBehaviour
     }
 
     // Select a random rotation from min to max for each bullet
-    public float[] RandomRotations()
+    public void RandomRotations()
     {
         for (int i = 0; i < GetSpawnData().bulletCount; i++)
         {
             rotations[i] = Random.Range(GetSpawnData().minRotation, GetSpawnData().maxRotation);
         }
-        return rotations;
     }
     
     // This will set random rotations evenly distributed between the min and max Rotation.
-    public float[] DistributedRotations()
+    public void DistributedRotations()
     {
         for (int i = 0; i < GetSpawnData().bulletCount; i++)
         {
@@ -70,16 +71,31 @@ public class BulletSpawner : MonoBehaviour
             var fractionOfDifference = fraction * difference;
             rotations[i] = fractionOfDifference + GetSpawnData().minRotation; // We add minRotation to undo Difference
         }
-        return rotations;
+    }
+
+    // This will set specific rotations assuming that list specificRotations is not empty
+    public void SpecificRotations()
+    {
+        if (specificRotations.Count != GetSpawnData().bulletCount)
+        {
+            print("Error: Incorrect specific rotations configuration");
+        }
+
+        rotations = specificRotations.ToArray();
     }
 
     public void SpawnBullets()
     {
         BulletSpawnData spawnData = GetSpawnData();
+        specificRotations = GetSpawnData().specificRotations;
+
         rotations = new float[spawnData.bulletCount];
         if (spawnData.isRandom)
         {
             RandomRotations();
+        } else if (specificRotations.Count != 0)
+        {
+            SpecificRotations();
         } else
         {
             DistributedRotations();
@@ -107,6 +123,8 @@ public class BulletSpawner : MonoBehaviour
             b.SetVelocity(spawnData.bulletVelocity);
             b.SetDamage(spawnData.damage);
             b.SetLifetime(spawnData.lifetime);
+
+            spawnedBullets[i].SetActive(true);
 
             if (spawnData.isNotParent)
             {

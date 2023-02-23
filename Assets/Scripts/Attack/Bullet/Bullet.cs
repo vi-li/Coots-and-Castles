@@ -11,6 +11,11 @@ public class Bullet : AttackBase
         timer = lifetime;
         transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
+    
+    private void OnEnable() 
+    {
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
+    }
 
     void Update()
     {

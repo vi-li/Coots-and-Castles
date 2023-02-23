@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
   m_Name: Queen_Attack_Player
   m_EditorClassIdentifier: 
-  attackResource: {fileID: 6271565721240947822, guid: eb1523fdc5d4c7c45ad43c1a844bc84f, type: 3}
-  cooldown: 2
+  attackResource: {fileID: 3360812408633617247, guid: e643df8ffe1205946842ca16e22d89b4, type: 3}
+  cooldown: 0.5
   damage: 1
   lifetime: 5
-  type: Bullet_Large_Enemy
+  type: Bullet_Distinguished_Player
   bulletVelocity: {x: 1, y: 0}
   bulletSpeed: 3
   bulletCount: 8
   minRotation: 0
   maxRotation: 315
+  specificRotations: []
   isRandom: 0
   isNotParent: 1

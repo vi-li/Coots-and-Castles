@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201362428159601785}
+  - component: {fileID: 201362428159601764}
   - component: {fileID: 201362428159601766}
   - component: {fileID: 201362428159601767}
-  - component: {fileID: 201362428159601764}
   m_Layer: 0
   m_Name: Full Heal Upgrade
   m_TagString: Upgrade
@@ -34,6 +34,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &201362428159601764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201362428159601765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03aa12d2eaef05e47942475e4f002c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupEffect: {fileID: 11400000, guid: c63bab98b3273df4886266f77f1c59ca, type: 2}
 --- !u!212 &201362428159601766
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -112,16 +125,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &201362428159601764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201362428159601765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03aa12d2eaef05e47942475e4f002c19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerupEffect: {fileID: 11400000, guid: c63bab98b3273df4886266f77f1c59ca, type: 2}

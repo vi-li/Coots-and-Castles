@@ -18,7 +18,6 @@ public class AttackManager : MonoBehaviour
                 GameObject availableAttack = attacks[i];
                 var b = availableAttack.GetComponent<AttackBase>();
                 b.ResetTimer();
-                availableAttack.SetActive(true);
                 return availableAttack;
             }
         }

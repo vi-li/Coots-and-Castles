@@ -10,8 +10,13 @@ public class Powerup : MonoBehaviour
    {
       if (collision.tag == "Player")
       {
-         Destroy(gameObject);
+         DestroySequence();
          powerupEffect.Apply(collision.gameObject);
       }
+   }
+
+   private void DestroySequence()
+   {
+      Destroy(gameObject);
    }
 }

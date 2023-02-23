@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slash_Player_Attack
   m_EditorClassIdentifier: 
   attackResource: {fileID: 7685233434851944127, guid: cab53d3a3aa2c394aae7ba7bc68077a0, type: 3}
-  cooldown: 0.5
+  cooldown: 0.25
   damage: 1
   lifetime: 0.5
   type: Slash_Player
