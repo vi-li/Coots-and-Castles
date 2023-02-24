@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5491565461617898787}
   - component: {fileID: 5491565461617898789}
   - component: {fileID: 2474613864820256062}
+  - component: {fileID: 7305796229561229949}
   m_Layer: 0
   m_Name: Queen_E
   m_TagString: Enemy
@@ -52,6 +53,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9e3f92c6185c9e439ed0ced8f990dde, type: 2}
   index: 0
   isSequenceRandom: 0
+  isRotationAffectedByObject: 0
+  specificRotations: []
   spawnAutomatically: 1
 --- !u!212 &5491565461617898786
 SpriteRenderer:
@@ -94,12 +97,12 @@ SpriteRenderer:
   m_SortingLayerID: -1142976403
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b396a85c5a6fc9f44b584c9cdd39ff8e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9156b484fd2bbaf428d85b5c2120e013, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.11, y: 0.11}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -159,8 +162,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.11, y: 0.11}
-    newSize: {x: 0.11, y: 0.11}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -168,3 +171,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11, y: 0.11}
   m_EdgeRadius: 0
+--- !u!114 &7305796229561229949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5491565461617898790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775f3b7a9ad66a04b95636e6ebbbbc0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrade: {fileID: 5387863183318946245, guid: 69f7a8247c819af4c875386457b17eed, type: 3}
+  dropChance: 0.5

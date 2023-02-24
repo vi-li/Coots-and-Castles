@@ -8,6 +8,7 @@ public class BulletSpawner : MonoBehaviour
     public List<BulletSpawnData> spawnDatas;
     public int index = 0;
     public bool isSequenceRandom;
+    public bool isRotationAffectedByObject;
     public List<float> specificRotations;
     public bool spawnAutomatically;
     private float cooldown;
@@ -60,18 +61,6 @@ public class BulletSpawner : MonoBehaviour
             rotations[i] = Random.Range(GetSpawnData().minRotation, GetSpawnData().maxRotation);
         }
     }
-    
-    // This will set random rotations evenly distributed between the min and max Rotation.
-    public void DistributedRotations()
-    {
-        for (int i = 0; i < GetSpawnData().bulletCount; i++)
-        {
-            var fraction = (float)i / ((float)GetSpawnData().bulletCount - 1);
-            var difference = GetSpawnData().maxRotation - GetSpawnData().minRotation;
-            var fractionOfDifference = fraction * difference;
-            rotations[i] = fractionOfDifference + GetSpawnData().minRotation; // We add minRotation to undo Difference
-        }
-    }
 
     // This will set specific rotations assuming that list specificRotations is not empty
     public void SpecificRotations()
@@ -82,6 +71,18 @@ public class BulletSpawner : MonoBehaviour
         }
 
         rotations = specificRotations.ToArray();
+    }
+
+    // This will set random rotations evenly distributed between the min and max Rotation.
+    public void DistributedRotations()
+    {
+        for (int i = 0; i < GetSpawnData().bulletCount; i++)
+        {
+            var fraction = (float)i / ((float)GetSpawnData().bulletCount - 1);
+            var difference = GetSpawnData().maxRotation - GetSpawnData().minRotation;
+            var fractionOfDifference = fraction * difference;
+            rotations[i] = fractionOfDifference + GetSpawnData().minRotation; // We add minRotation to undo Difference
+        }
     }
 
     public void SpawnBullets()
@@ -118,6 +119,12 @@ public class BulletSpawner : MonoBehaviour
             spawnedBullets[i].transform.localPosition = Vector2.zero;
 
             var b = spawnedBullets[i].GetComponent<Bullet>();
+
+            if (isRotationAffectedByObject)
+            {
+                rotations[i] += transform.eulerAngles.z;
+            }
+
             b.SetRotation(rotations[i]);
             b.SetSpeed(spawnData.bulletSpeed);
             b.SetVelocity(spawnData.bulletVelocity);

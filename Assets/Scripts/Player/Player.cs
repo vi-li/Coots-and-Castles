@@ -106,6 +106,13 @@ public class Player : MonoBehaviour
     public void UpdatePieceTypeScript()
     {
         Destroy(gameObject.GetComponent<PieceType>());
+
+        var bulletSpawner = gameObject.GetComponent<BulletSpawner>();
+        if (bulletSpawner != null)
+        {
+            Destroy(bulletSpawner);
+        }
+
         switch (piece)
         {
             case PlayerType.PAWN:
@@ -126,7 +133,7 @@ public class Player : MonoBehaviour
                 break;
             case PlayerType.QUEEN:
                 gameObject.AddComponent<QueenType>();
-                //spriteRenderer.sprite = spriteList[4];
+                spriteRenderer.sprite = spriteDict["Queen_Light"];
                 break;
         }
     }
@@ -249,19 +256,19 @@ public class Player : MonoBehaviour
         AsyncOperationHandle<Sprite> knightSpriteHandle = knightSprite.LoadAssetAsync();
         AsyncOperationHandle<Sprite> rookSpriteHandle = rookSprite.LoadAssetAsync();
         AsyncOperationHandle<Sprite> bishopSpriteHandle = bishopSprite.LoadAssetAsync();
-        //AsyncOperationHandle<Sprite> queenSpriteHandle = queenSprite.LoadAssetAsync();
+        AsyncOperationHandle<Sprite> queenSpriteHandle = queenSprite.LoadAssetAsync();
         
         pawnSpriteHandle.Completed += SpriteLoaded;
         knightSpriteHandle.Completed += SpriteLoaded;
         rookSpriteHandle.Completed += SpriteLoaded;
         bishopSpriteHandle.Completed += SpriteLoaded;
-        //queenSpriteHandle.Completed += LoadSpritesWhenReady;
+        queenSpriteHandle.Completed += SpriteLoaded;
 
         Addressables.Release(pawnSpriteHandle);
         Addressables.Release(knightSpriteHandle);
         Addressables.Release(rookSpriteHandle);
         Addressables.Release(bishopSpriteHandle);
-        //Addressables.Release(queenSpriteHandle);
+        Addressables.Release(queenSpriteHandle);
     }
 
     private void SpriteLoaded(AsyncOperationHandle<Sprite> obj)
@@ -270,7 +277,6 @@ public class Player : MonoBehaviour
         {
             case AsyncOperationStatus.Succeeded:
                 print(obj.Result.name);
-                print(obj.Result);
                 spriteDict.Add(obj.Result.name, obj.Result);
                 break;
             case AsyncOperationStatus.Failed:

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2332218592948854338}
   - component: {fileID: 2332218592948854336}
   - component: {fileID: 3671001189856450964}
+  - component: {fileID: 9204325108158217581}
   m_Layer: 0
   m_Name: Rook_E
   m_TagString: Enemy
@@ -52,6 +53,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 131347f776bba594996c1ccda646c1c1, type: 2}
   index: 0
   isSequenceRandom: 0
+  isRotationAffectedByObject: 0
+  specificRotations: []
   spawnAutomatically: 1
 --- !u!212 &2332218592948854349
 SpriteRenderer:
@@ -168,3 +171,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.07, y: 0.07}
   m_EdgeRadius: 0
+--- !u!114 &9204325108158217581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332218592948854350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775f3b7a9ad66a04b95636e6ebbbbc0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrade: {fileID: 3030664598283039628, guid: 895755eaeefcf7e48b301cb9344bdc3a, type: 3}
+  dropChance: 1

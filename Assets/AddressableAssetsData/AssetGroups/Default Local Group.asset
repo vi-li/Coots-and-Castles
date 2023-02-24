@@ -33,6 +33,10 @@ MonoBehaviour:
     m_Address: Assets/Sprites/Player/Rook_Light.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 559b568950fa7f945ab9aa0763d4a5eb
+    m_Address: Assets/Sprites/Player/Queen_Light.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ce2ead0801be8bb4c8d255bfe7add0a6, type: 2}
   m_SchemaSet:
