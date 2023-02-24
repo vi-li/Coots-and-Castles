@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Healthbar healthbar;
     [SerializeField]
     protected Tilemap groundTilemap;
     [SerializeField]
@@ -46,7 +47,9 @@ public class Player : MonoBehaviour
         BISHOP,
         QUEEN,
     }
-
+    public void setHealthBar(float hp){
+        healthbar.setHealth(hp);
+    }
     protected enum Direction {
         left, right, up, down
     }
@@ -69,6 +72,8 @@ public class Player : MonoBehaviour
         moveToPosition = transform.position;
 
         hp = startHp;
+        healthbar.setMaxHealth(startHp);
+        setHealthBar(hp);
         print("set player hp " + hp + " " + startHp);
 
         invulnerabilityTimer = 0;
@@ -234,7 +239,7 @@ public class Player : MonoBehaviour
             float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
             hp -= damage;
             print("Health: " + hp);
-
+            setHealthBar(hp);
             if (hp <= 0)
             {
                 print("you died");
