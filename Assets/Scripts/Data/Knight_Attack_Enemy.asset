@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
-  m_Name: Bishop_Attack_Player
+  m_Name: Knight_Attack_Enemy
   m_EditorClassIdentifier: 
-  attackResource: {fileID: 8276141578322569619, guid: 47da939b62b01fd4aaf51840cff81599, type: 3}
-  cooldown: 0.25
+  attackResource: {fileID: 1881179349174620747, guid: 2d78e8ef4be08f245a911d8954585291, type: 3}
+  cooldown: 0.5
   damage: 1
-  lifetime: 4
-  type: Bullet_Star_Player
+  lifetime: 0.45
+  type: Bullet_Small_Enemy
   bulletVelocity: {x: 1, y: 0}
   bulletSpeed: 5
   bulletCount: 4
-  minRotation: 45
-  maxRotation: 315
-  specificRotations: []
+  minRotation: 0
+  maxRotation: 0
+  specificRotations:
+  - 65
+  - 113
+  - 245
+  - 293
   isRandom: 0
   isNotParent: 1

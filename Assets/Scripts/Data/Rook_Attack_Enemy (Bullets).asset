@@ -15,12 +15,13 @@ MonoBehaviour:
   attackResource: {fileID: 1881179349174620747, guid: cc987ab9358116d4182d158eee7584c9, type: 3}
   cooldown: 2
   damage: 1
-  lifetime: 5
+  lifetime: 4
   type: Bullet_Medium_Enemy
   bulletVelocity: {x: 1, y: 0}
   bulletSpeed: 2
   bulletCount: 4
   minRotation: 0
   maxRotation: 270
+  specificRotations: []
   isRandom: 0
   isNotParent: 1
