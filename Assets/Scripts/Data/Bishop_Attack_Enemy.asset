@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
   m_Name: Bishop_Attack_Enemy
   m_EditorClassIdentifier: 
-  attackResource: {fileID: 1881179349174620747, guid: 2d78e8ef4be08f245a911d8954585291, type: 3}
+  attackResource: {fileID: 569575145764495148, guid: 69d2520c76315554e944ddb3eb33c009, type: 3}
   cooldown: 5
   damage: 1
-  lifetime: 5
-  type: Bullet_Small_Enemy
+  lifetime: 4
+  type: Bullet_Star_Enemy
   bulletVelocity: {x: 1, y: 0}
   bulletSpeed: 5
   bulletCount: 4
   minRotation: 45
   maxRotation: 315
+  specificRotations: []
   isRandom: 0
   isNotParent: 1

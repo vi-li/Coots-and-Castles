@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
   m_Name: Knight_Attack_Player
   m_EditorClassIdentifier: 
-  attackResource: {fileID: 3360812408633617247, guid: e643df8ffe1205946842ca16e22d89b4, type: 3}
+  attackResource: {fileID: 1621336453437869064, guid: ef8a85419ae45e649adb4ed74e4166f4, type: 3}
   cooldown: 0.25
   damage: 1
-  lifetime: 0.5
-  type: Bullet_Distinguished_Player
+  lifetime: 0.45
+  type: Bullet_Small_Player
   bulletVelocity: {x: 1, y: 0}
   bulletSpeed: 5
   bulletCount: 4

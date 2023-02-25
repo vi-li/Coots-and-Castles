@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 958dece2a15337347b7d1edec5031fee, type: 2}
   index: 0
   isSequenceRandom: 0
+  isRotationAffectedByObject: 0
+  specificRotations: []
   spawnAutomatically: 1
 --- !u!212 &6042284383364793957
 SpriteRenderer:
@@ -181,5 +183,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775f3b7a9ad66a04b95636e6ebbbbc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgrade: {fileID: 201362428159601764, guid: 5f6c87833598fd844b06764e3d301c54, type: 3}
-  dropChance: 0
+  upgrade: {fileID: 1690194090941397914, guid: 6c71777a7bb78084a9f0dbcafc3438b2, type: 3}
+  dropChance: 0.25
