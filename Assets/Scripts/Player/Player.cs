@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
+    
     [SerializeField] Healthbar healthbar;
     [SerializeField]
     protected Tilemap groundTilemap;
