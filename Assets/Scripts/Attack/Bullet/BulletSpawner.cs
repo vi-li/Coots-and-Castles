@@ -76,6 +76,12 @@ public class BulletSpawner : MonoBehaviour
     // This will set random rotations evenly distributed between the min and max Rotation.
     public void DistributedRotations()
     {
+        if (GetSpawnData().bulletCount <= 1)
+        {
+            rotations[0] = GetSpawnData().minRotation;
+            return;
+        }
+
         for (int i = 0; i < GetSpawnData().bulletCount; i++)
         {
             var fraction = (float)i / ((float)GetSpawnData().bulletCount - 1);
