@@ -11,12 +11,12 @@ public class Enemy : MonoBehaviour
     public float invulnerabilityTimer;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         hp = startHp;
     }
 
-    void Update()
+    public void Update()
     {
         TickTimer();
     }
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "PlayerAttack" && invulnerabilityTimer <= 0)
         {
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Death()
+    public void Death()
     {
         gameObject.GetComponent<DropUpgrades>().Drop();
         gameObject.SetActive(false);
