@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public GameOverScreen GameOverObject;
     public void GameOver(){
-        GameOverObject.Setup();
+        SceneManager.LoadScene("Defeat");
+    }
+    public void Victory(){
+        SceneManager.LoadScene("Victory");
     }
     
 }
