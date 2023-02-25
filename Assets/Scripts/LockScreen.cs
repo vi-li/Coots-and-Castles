@@ -8,8 +8,10 @@ public class LockScreen : MonoBehaviour
     public CameraFollow cameraF;
     public Camera cam;
     public Tilemap collisionTilemap;
+    public Canvas bossHealth;
     protected void OnTriggerEnter2D(Collider2D collision)
     {
+        bossHealth.transform.Find("BossHealth").gameObject.SetActive(true);
         collisionTilemap.gameObject.SetActive(true);
         if (collision.tag == "Player")
         {

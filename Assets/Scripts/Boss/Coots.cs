@@ -5,10 +5,13 @@ using UnityEngine;
 public class Coots : Enemy
 {
      public GameController control;
+     public Healthbar health;
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
+        health.setMaxHealth(startHp);
+        health.setHealth(startHp);
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class Coots : Enemy
         {
             float damage = collision.gameObject.GetComponent<AttackBase>().GetDamage();
             hp -= damage;
+            health.setHealth(hp);
             print("Enemy Health: " + hp);
 
             if (hp <= 0)

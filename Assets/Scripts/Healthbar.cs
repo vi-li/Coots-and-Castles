@@ -21,6 +21,6 @@ public class Healthbar : MonoBehaviour
     public void setHealth(float health)
     {
         healthSlider.value = health;
-        print(healthSlider.value);
+        print("health slider is " + healthSlider.value);
     }
 }
