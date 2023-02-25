@@ -9,11 +9,13 @@ public class Bullet : AttackBase
     void Start()
     {
         timer = lifetime;
+        print("start: " + rotation);
         transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
     
     private void OnEnable() 
     {
+        print("onenable: " + rotation);
         transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 

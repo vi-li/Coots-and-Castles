@@ -9,12 +9,16 @@ public class BossAttackSequence : MonoBehaviour
 
     public GameObject head;
     public GameObject facialExpression;
+    public GameObject blinkExpression;
     public GameObject pawL;
     public GameObject pawR;
 
-    private BulletSpawner headBulletSpawner;
-    private BulletSpawner pawLBulletSpawner;
-    private BulletSpawner pawRBulletSpawner;
+    public GameObject pawAnchorL;
+    public GameObject pawAnchorR;
+
+    private BulletSpawner headBS;
+    private BulletSpawner pawLBS;
+    private BulletSpawner pawRBS;
 
     private SpriteRenderer expressionSpriteRenderer;
 
@@ -28,30 +32,58 @@ public class BossAttackSequence : MonoBehaviour
         head = gameObject.transform.Find("Head").gameObject;
         pawL = gameObject.transform.Find("PawL").gameObject;
         pawR = gameObject.transform.Find("PawR").gameObject;
+
         facialExpression = gameObject.transform.Find("Head").gameObject.transform.Find("FacialExpression").gameObject;
+        blinkExpression = gameObject.transform.Find("Head").gameObject.transform.Find("BlinkExpression").gameObject;
+
+        pawAnchorL = gameObject.transform.Find("PawAnchorL").gameObject;
+        pawAnchorR = gameObject.transform.Find("PawAnchorR").gameObject;
 
         expressionSpriteRenderer = facialExpression.GetComponent<SpriteRenderer>();
 
-        headBulletSpawner = head.transform.Find("BulletSpawnerObj").gameObject.GetComponent<BulletSpawner>();
-        pawLBulletSpawner = pawL.GetComponent<BulletSpawner>();
-        pawRBulletSpawner = pawR.GetComponent<BulletSpawner>();
+        headBS = head.transform.Find("BulletSpawnerObj").gameObject.GetComponent<BulletSpawner>();
+        pawLBS = pawL.transform.Find("BulletSpawnerObj").gameObject.GetComponent<BulletSpawner>();
+        pawRBS = pawR.transform.Find("BulletSpawnerObj").gameObject.GetComponent<BulletSpawner>();
+
+        facialExpression.SetActive(false);
+        blinkExpression.SetActive(true);
 
         StartCoroutine(AttackRoutine());
     }
 
     IEnumerator AttackRoutine()
     {
-        yield return StartCoroutine(RotateToAngle(head, 0.5f, 20));
-        yield return StartCoroutine(ScreamAttack(-45.0f));
-        yield return new WaitForSeconds(2);
-        yield return StartCoroutine(ScreamAttack(45.0f));
+        // RotateAround(GameObject obj, float inTimeSecs, float angle, GameObject anchorObj)
+        ///yield return StartCoroutine(RotateToAngle(head, 0.5f, 20));
+        // yield return StartCoroutine(ScreamAttack(2.0f, -45.0f, 5));
+        // yield return new WaitForSeconds(2);
+        // yield return StartCoroutine(ScreamAttack(2.0f, 45.0f, 5));
+        // yield return new WaitForSeconds(2);
+        yield return StartCoroutine(RotateAround(pawL, 1.0f, -15.0f, pawAnchorL));
+        yield return StartCoroutine(RotateAround(pawL, 0.2f, 15.0f, pawAnchorL));
+        yield return StartCoroutine(SwipeAttack(pawL, pawLBS, 0.1f));
     }
 
-    IEnumerator ScreamAttack(float angleToRotate)
+    IEnumerator ScreamAttack(float duration, float angleToRotate, int numWavesBullets)
     {
+        SwapExpression();
         expressionSpriteRenderer.sprite = faceScream;
-        yield return StartCoroutine(RotateSpawnBullets(head, 2.0f, angleToRotate, 5));
-        expressionSpriteRenderer.sprite = faceNeutralOpenEyes;
+        yield return StartCoroutine(RotateSpawnBullets(head, headBS, duration, angleToRotate, numWavesBullets));
+        SwapExpression();
+    }
+
+    IEnumerator SwipeAttack(GameObject paw, BulletSpawner pawBS, float duration)
+    {
+        SwapExpression();
+        expressionSpriteRenderer.sprite = faceNeutralClosedEyes;
+        yield return StartCoroutine(RotateSpawnBullets(paw, pawBS, duration, 0.0f, 1));
+        SwapExpression();
+    }
+
+    void SwapExpression()
+    {
+        blinkExpression.SetActive(!blinkExpression.activeSelf);
+        facialExpression.SetActive(!facialExpression.activeSelf);
     }
 
     IEnumerator RotateToAngle(GameObject obj, float duration, float angleToRotateTo)
@@ -71,7 +103,7 @@ public class BossAttackSequence : MonoBehaviour
         }
     }
 
-    IEnumerator RotateSpawnBullets(GameObject obj, float duration, float angleToRotate, int numWavesBullets)
+    IEnumerator RotateSpawnBullets(GameObject obj, BulletSpawner bs, float duration, float angleToRotate, int numWavesBullets)
     {
         Transform objTranform = obj.transform;
 
@@ -88,9 +120,34 @@ public class BossAttackSequence : MonoBehaviour
 
             if (timer >= timeNextWave)
             {
-                headBulletSpawner.SpawnBullets();
+                print(bs.transform.eulerAngles);
+                bs.SpawnBullets();
                 timeNextWave += bulletInterval;
             }
+
+            yield return null;
+        }
+    }
+
+    IEnumerator RotateAround(GameObject obj, float inTimeSecs, float angle, GameObject anchorObj)
+    {
+        Vector3 anchorPosition = anchorObj.transform.position;
+        float timer = 0.0f;
+        float angleDelta = angle / inTimeSecs; // How many degress to rotate in one second
+        float ourTimeDelta = 0;
+
+        while (timer < inTimeSecs)
+        {
+            timer += Time.deltaTime;
+            ourTimeDelta = Time.deltaTime;
+
+            // Make sure we dont spin past the angle we want.
+            if (timer > inTimeSecs)
+            {
+                ourTimeDelta -= (timer - inTimeSecs);
+            }
+
+            obj.transform.RotateAround(anchorPosition, Vector3.forward, angleDelta * ourTimeDelta);
 
             yield return null;
         }
