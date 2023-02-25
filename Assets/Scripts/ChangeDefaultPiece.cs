@@ -8,7 +8,7 @@ public class ChangeDefaultPiece : MonoBehaviour
     public Player.PlayerType type;
      protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player"){
+        if(collision.tag == "Player" && player.defaultPiece != type){
             player.defaultPiece = type;
             player.piece = type;
             player.UpdatePieceTypeScript();
