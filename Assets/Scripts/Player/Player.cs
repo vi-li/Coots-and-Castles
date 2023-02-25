@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     protected Tilemap groundTilemap;
     [SerializeField]
     protected Tilemap collisionTilemap;
+    [SerializeField] protected Tilemap collisionTilemap2;
     protected PlayerMovement controls;
 
     [SerializeField]
@@ -148,7 +149,7 @@ public class Player : MonoBehaviour
     protected bool CanMove(Vector2 direction)
     {
         Vector3Int gridPosition = groundTilemap.WorldToCell(moveToPosition + (Vector3)direction);
-        if (!groundTilemap.HasTile(gridPosition) || collisionTilemap.HasTile(gridPosition))
+        if (!groundTilemap.HasTile(gridPosition) || collisionTilemap.HasTile(gridPosition) || (collisionTilemap2.HasTile(gridPosition) && collisionTilemap2.gameObject.activeSelf))
         {
             return false;
         }
