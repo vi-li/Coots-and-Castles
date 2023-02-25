@@ -7,7 +7,8 @@ using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Healthbar healthbar;
+    
+    [SerializeField] Canvas UI;
     [SerializeField]
     protected Tilemap groundTilemap;
     [SerializeField]
@@ -71,7 +72,6 @@ public class Player : MonoBehaviour
         moveToPosition = transform.position;
 
         hp = startHp;
-        healthbar.setMaxHealth(startHp);
         print("set player hp " + hp);
         UpdateHealth();
 
@@ -244,7 +244,21 @@ public class Player : MonoBehaviour
 
     public void SetHealthBar()
     {
-        healthbar.setHealth(hp);
+        if(hp == 3){
+            UI.transform.Find("Heart1").gameObject.SetActive(true);
+            UI.transform.Find("Heart2").gameObject.SetActive(true);
+            UI.transform.Find("Heart3").gameObject.SetActive(true);
+        }
+        else if(hp == 2){
+            UI.transform.Find("Heart1").gameObject.SetActive(true);
+            UI.transform.Find("Heart2").gameObject.SetActive(true);
+            UI.transform.Find("Heart3").gameObject.SetActive(false);
+        }
+        else if(hp == 1){
+            UI.transform.Find("Heart1").gameObject.SetActive(true);
+            UI.transform.Find("Heart2").gameObject.SetActive(false);
+            UI.transform.Find("Heart3").gameObject.SetActive(false);
+        }
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
