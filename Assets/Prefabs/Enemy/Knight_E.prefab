@@ -124,6 +124,7 @@ MonoBehaviour:
   hp: 0
   invulnerabilityCooldown: 0
   invulnerabilityTimer: 0
+  rend: {fileID: 0}
 --- !u!50 &4548367315523087937
 Rigidbody2D:
   serializedVersion: 4
@@ -183,5 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775f3b7a9ad66a04b95636e6ebbbbc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgrade: {fileID: 0}
+  upgrade:
+  - {fileID: 8298884789083787307, guid: b4bf2634756d3074b8b18f9b4e19fabb, type: 3}
+  size: 1
   dropChance: 0.25
