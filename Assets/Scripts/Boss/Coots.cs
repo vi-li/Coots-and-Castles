@@ -6,18 +6,18 @@ public class Coots : Enemy
 {
      public GameController control;
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         base.Update();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    new private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "PlayerAttack" && invulnerabilityTimer <= 0)
         {
@@ -35,10 +35,9 @@ public class Coots : Enemy
         }
     }
 
-    private void Death()
+    new private void Death()
     {
         control.Victory();
         gameObject.SetActive(false);
-        
     }
 }
