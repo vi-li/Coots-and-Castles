@@ -18,7 +18,7 @@ MonoBehaviour:
   lifetime: 5
   type: Bullet_Medium_Enemy
   bulletVelocity: {x: 1, y: 0}
-  bulletSpeed: 5
+  bulletSpeed: 3
   bulletCount: 10
   minRotation: 0
   maxRotation: 360

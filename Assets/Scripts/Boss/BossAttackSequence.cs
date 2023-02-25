@@ -26,6 +26,7 @@ public class BossAttackSequence : MonoBehaviour
     public Sprite faceNeutralOpenEyes;
     public Sprite faceNeutralClosedEyes;
 
+    public GameObject objectToSpawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +63,7 @@ public class BossAttackSequence : MonoBehaviour
         yield return StartCoroutine(RotateAround(pawL, 1.0f, -15.0f, pawAnchorL));
         yield return StartCoroutine(RotateAround(pawL, 0.2f, 15.0f, pawAnchorL));
         yield return StartCoroutine(SwipeAttack(pawL, pawLBS, 0.1f));
+        yield return StartCoroutine(BombAttack());
     }
 
     IEnumerator ScreamAttack(float duration, float angleToRotate, int numWavesBullets)
@@ -80,6 +82,11 @@ public class BossAttackSequence : MonoBehaviour
         SwapExpression();
     }
 
+    IEnumerator BombAttack(){
+        Vector3 bomblocation = transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, -6f));
+        Instantiate(objectToSpawn, bomblocation, transform.rotation);
+        yield return 1;
+    }
     void SwapExpression()
     {
         blinkExpression.SetActive(!blinkExpression.activeSelf);
