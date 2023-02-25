@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
   m_Name: Boss_Sound_Attack
   m_EditorClassIdentifier: 
-  attackResource: {fileID: 1881179349174620747, guid: cc987ab9358116d4182d158eee7584c9, type: 3}
-  cooldown: 2
+  attackResource: {fileID: 8695456368927761017, guid: 23659be409f59de4cb0233b8b460edac, type: 3}
+  cooldown: 0
   damage: 1
-  lifetime: 5
+  lifetime: 3
   type: Boss_Sound_Bullet
   bulletVelocity: {x: 1, y: 0}
-  bulletSpeed: 7
-  bulletCount: 5
-  minRotation: 0
-  maxRotation: 70
+  bulletSpeed: 6
+  bulletCount: 4
+  minRotation: 315
+  maxRotation: 225
   specificRotations: []
   isRandom: 0
   isNotParent: 1

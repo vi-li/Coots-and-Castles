@@ -8,20 +8,31 @@ public class BossAttackSequence : MonoBehaviour
     public float smoothSpeed = 0.125f;
 
     public GameObject head;
+    public GameObject facialExpression;
     public GameObject pawL;
     public GameObject pawR;
 
     private BulletSpawner headBulletSpawner;
     private BulletSpawner pawLBulletSpawner;
     private BulletSpawner pawRBulletSpawner;
+
+    private SpriteRenderer expressionSpriteRenderer;
+
+    public Sprite faceScream;
+    public Sprite faceNeutralOpenEyes;
+    public Sprite faceNeutralClosedEyes;
+
     // Start is called before the first frame update
     void Start()
     {
         head = gameObject.transform.Find("Head").gameObject;
         pawL = gameObject.transform.Find("PawL").gameObject;
         pawR = gameObject.transform.Find("PawR").gameObject;
+        facialExpression = gameObject.transform.Find("Head").gameObject.transform.Find("FacialExpression").gameObject;
 
-        headBulletSpawner = head.GetComponent<BulletSpawner>();
+        expressionSpriteRenderer = facialExpression.GetComponent<SpriteRenderer>();
+
+        headBulletSpawner = head.transform.Find("BulletSpawnerObj").gameObject.GetComponent<BulletSpawner>();
         pawLBulletSpawner = pawL.GetComponent<BulletSpawner>();
         pawRBulletSpawner = pawR.GetComponent<BulletSpawner>();
 
@@ -31,13 +42,17 @@ public class BossAttackSequence : MonoBehaviour
     IEnumerator AttackRoutine()
     {
         yield return StartCoroutine(RotateToAngle(head, 0.5f, 20));
-        yield return StartCoroutine(RotateSpawnBullets(head, 2.0f, -45.0f, 5));
+        yield return StartCoroutine(ScreamAttack(-45.0f));
+        yield return new WaitForSeconds(2);
+        yield return StartCoroutine(ScreamAttack(45.0f));
     }
 
-    // IEnumerator ScreamAttack()
-    // {
-    //     headBulletSpawner.SpawnBullets();
-    // }
+    IEnumerator ScreamAttack(float angleToRotate)
+    {
+        expressionSpriteRenderer.sprite = faceScream;
+        yield return StartCoroutine(RotateSpawnBullets(head, 2.0f, angleToRotate, 5));
+        expressionSpriteRenderer.sprite = faceNeutralOpenEyes;
+    }
 
     IEnumerator RotateToAngle(GameObject obj, float duration, float angleToRotateTo)
     {
