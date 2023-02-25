@@ -48,12 +48,11 @@ public class Player : MonoBehaviour
         BISHOP,
         QUEEN,
     }
-    public void setHealthBar(float hp){
-        healthbar.setHealth(hp);
-    }
+
     protected enum Direction {
         left, right, up, down
     }
+
     private void Awake() {
         controls = new PlayerMovement();
     }
@@ -74,8 +73,8 @@ public class Player : MonoBehaviour
 
         hp = startHp;
         healthbar.setMaxHealth(startHp);
-        setHealthBar(hp);
-        print("set player hp " + hp + " " + startHp);
+        print("set player hp " + hp);
+        UpdateHealth();
 
         invulnerabilityTimer = 0;
 
@@ -233,20 +232,30 @@ public class Player : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, moveToPosition, ref velocity, smoothSpeed);
     }
 
+    public void UpdateHealth()
+    {
+        SetHealthBar();
+
+        if (hp <= 0)
+        {
+            print("you died");
+            control.GameOver();
+        }
+    }
+
+    public void SetHealthBar()
+    {
+        healthbar.setHealth(hp);
+    }
+
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "EnemyAttack" && invulnerabilityTimer <= 0)
         {
             float damage = collision.gameObject.GetComponent<Bullet>().GetDamage();
             hp -= damage;
-            print("Health: " + hp);
-            setHealthBar(hp);
-            if (hp <= 0)
-            {
-                print("you died");
-                control.GameOver();
-            }
-
+            print("Player Health: " + hp);
+            UpdateHealth();
             invulnerabilityTimer = invulnerabilityCooldown;
         }
     }
@@ -282,7 +291,6 @@ public class Player : MonoBehaviour
         switch (obj.Status)
         {
             case AsyncOperationStatus.Succeeded:
-                print(obj.Result.name);
                 spriteDict.Add(obj.Result.name, obj.Result);
                 break;
             case AsyncOperationStatus.Failed:
