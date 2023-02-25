@@ -9,11 +9,12 @@ public class Enemy : MonoBehaviour
 
     public float invulnerabilityCooldown;
     public float invulnerabilityTimer;
-
+    public SpriteRenderer rend;
     // Start is called before the first frame update
     public void Start()
     {
         hp = startHp;
+        rend = transform.GetComponent<SpriteRenderer>();
     }
 
     public void Update()
@@ -28,7 +29,12 @@ public class Enemy : MonoBehaviour
             invulnerabilityTimer -= Time.deltaTime;
         }
     }
-
+    IEnumerator takeDamage(){
+        Color currentColor = rend.color;
+        rend.color = Color.red;
+        yield return new WaitForSeconds(.2f);
+        rend.color = currentColor;
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "PlayerAttack" && invulnerabilityTimer <= 0)
@@ -36,7 +42,7 @@ public class Enemy : MonoBehaviour
             float damage = collision.gameObject.GetComponent<AttackBase>().GetDamage();
             hp -= damage;
             print("Enemy Health: " + hp);
-
+            StartCoroutine(takeDamage());
             if (hp <= 0)
             {
                 print("Enemy died");

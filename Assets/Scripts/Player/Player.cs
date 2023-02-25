@@ -7,7 +7,6 @@ using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
-    
     [SerializeField] Canvas UI;
     [SerializeField]
     protected Tilemap groundTilemap;
@@ -27,7 +26,9 @@ public class Player : MonoBehaviour
     public float invulnerabilityCooldown;
     public float invulnerabilityTimer;
     public float transformTimer;
-
+    public float flickerDuration;
+    public float flickerAmnt;
+    
     public PlayerType defaultPiece;
     public PlayerType piece;
     public GameController control;
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
     public AssetReferenceSprite rookSprite;
     public AssetReferenceSprite bishopSprite;
     public AssetReferenceSprite queenSprite;
+    Sprite currentSprite;
 
     public enum PlayerType
     {
@@ -79,7 +81,7 @@ public class Player : MonoBehaviour
 
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         spriteDict = new Dictionary<string, Sprite>();
-
+        currentSprite = spriteRenderer.sprite;
         LoadAddressableSprites();
     }
     
@@ -140,6 +142,7 @@ public class Player : MonoBehaviour
                 spriteRenderer.sprite = spriteDict["Queen_Light"];
                 break;
         }
+        currentSprite = spriteRenderer.sprite;
     }
 
     protected bool CanMove(Vector2 direction)
@@ -260,7 +263,16 @@ public class Player : MonoBehaviour
             UI.transform.Find("Heart3").gameObject.SetActive(false);
         }
     }
-
+    IEnumerator DamageFlicker(float invul){
+        float flickerAmnt = 10f;
+        float flickerInterval = invul/flickerAmnt;
+        for(int i = 0; i < flickerAmnt; i++){
+            spriteRenderer.sprite = null;
+            yield return new WaitForSeconds(flickerInterval);
+            spriteRenderer.sprite = currentSprite;
+            yield return new WaitForSeconds(flickerInterval);
+        }
+    }
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "EnemyAttack" && invulnerabilityTimer <= 0)
@@ -270,6 +282,7 @@ public class Player : MonoBehaviour
             print("Player Health: " + hp);
             UpdateHealth();
             invulnerabilityTimer = invulnerabilityCooldown;
+            StartCoroutine(DamageFlicker(invulnerabilityTimer));
         }
     }
 

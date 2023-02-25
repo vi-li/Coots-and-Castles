@@ -48,22 +48,42 @@ public class BossAttackSequence : MonoBehaviour
 
         facialExpression.SetActive(false);
         blinkExpression.SetActive(true);
-
-        StartCoroutine(AttackRoutine());
+        
+        StartCoroutine(Loop());
+        
     }
-
+    IEnumerator Loop(){
+        while(true){
+            print("about to attack");
+            yield return new WaitForSeconds(3);
+            yield return StartCoroutine(AttackRoutine());
+        }
+    }
     IEnumerator AttackRoutine()
     {
+        float num = Random.Range(0f, 3f);
+        if(num < 1){
+            print("swipe");
+            yield return StartCoroutine(SwipeAttack(pawL, pawLBS, 0.1f));
+        }
+        else if(num < 2){
+            print("scream");
+            yield return StartCoroutine(ScreamAttack(2.0f, -45.0f, 5));
+        }
+        else{
+            print("bomb");
+            yield return StartCoroutine(BombAttack());
+        }
         // RotateAround(GameObject obj, float inTimeSecs, float angle, GameObject anchorObj)
         ///yield return StartCoroutine(RotateToAngle(head, 0.5f, 20));
         // yield return StartCoroutine(ScreamAttack(2.0f, -45.0f, 5));
         // yield return new WaitForSeconds(2);
         // yield return StartCoroutine(ScreamAttack(2.0f, 45.0f, 5));
         // yield return new WaitForSeconds(2);
-        yield return StartCoroutine(RotateAround(pawL, 1.0f, -15.0f, pawAnchorL));
-        yield return StartCoroutine(RotateAround(pawL, 0.2f, 15.0f, pawAnchorL));
-        yield return StartCoroutine(SwipeAttack(pawL, pawLBS, 0.1f));
-        yield return StartCoroutine(BombAttack());
+        //yield return StartCoroutine(RotateAround(pawL, 1.0f, -15.0f, pawAnchorL));
+        //yield return StartCoroutine(RotateAround(pawL, 0.2f, 15.0f, pawAnchorL));
+        //yield return StartCoroutine(SwipeAttack(pawL, pawLBS, 0.1f));
+        //yield return StartCoroutine(BombAttack());
     }
 
     IEnumerator ScreamAttack(float duration, float angleToRotate, int numWavesBullets)
