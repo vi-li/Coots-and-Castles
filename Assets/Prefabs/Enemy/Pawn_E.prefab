@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDatas:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: d2b90d5f20dfbae4aa81e7dcd125ec03, type: 2}
   index: 0
   isSequenceRandom: 0
-  isRotationAffectedByObject: 0
+  isRotationAffectedByObject: 1
   specificRotations: []
-  spawnAutomatically: 0
+  spawnAutomatically: 1
 --- !u!1 &8415637008144939923
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +156,7 @@ MonoBehaviour:
   hp: 0
   invulnerabilityCooldown: 0
   invulnerabilityTimer: 0
+  rend: {fileID: 0}
 --- !u!50 &-8525727667456510722
 Rigidbody2D:
   serializedVersion: 4
@@ -216,4 +217,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 201362428159601764, guid: 5f6c87833598fd844b06764e3d301c54, type: 3}
-  dropChance: 0.3
+  dropChance: 0.75

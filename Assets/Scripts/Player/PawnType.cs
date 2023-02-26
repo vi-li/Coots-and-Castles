@@ -17,9 +17,12 @@ public class PawnType : PieceType
     private void Awake() 
     {
         // Use Pawn Attack Asset
-        string[] assetGuids = AssetDatabase.FindAssets("Slash_Player_Attack");
-        string assetPath = AssetDatabase.GUIDToAssetPath(assetGuids[0]);
-        spawnData = (SlashSpawnData)AssetDatabase.LoadAssetAtPath(assetPath, typeof(SlashSpawnData));
+        // string[] assetGuids = AssetDatabase.FindAssets("Slash_Player_Attack");
+        // string assetPath = AssetDatabase.GUIDToAssetPath(assetGuids[0]);
+        // spawnData = (SlashSpawnData)AssetDatabase.LoadAssetAtPath(assetPath, typeof(SlashSpawnData));
+
+        string assetPath = "AttackData/Slash_Player_Attack";
+        spawnData = (SlashSpawnData)Resources.Load<SlashSpawnData>(assetPath);
     }
 
     public override void Attack()

@@ -10,6 +10,9 @@ public class LockScreen : MonoBehaviour
     public Tilemap collisionTilemap;
     protected void OnTriggerEnter2D(Collider2D collision)
     {
+        GameObject enemyPieces = GameObject.Find("Enemy Pieces");
+        enemyPieces.SetActive(false);
+
         collisionTilemap.gameObject.SetActive(true);
         if (collision.tag == "Player")
         {

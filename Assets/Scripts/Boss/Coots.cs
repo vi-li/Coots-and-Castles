@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Coots : Enemy
 {
      public GameController control;
+     public TextMeshProUGUI bossHP;
     // Start is called before the first frame update
     new void Start()
     {
@@ -21,8 +23,10 @@ public class Coots : Enemy
     {
         if (collision.tag == "PlayerAttack" && invulnerabilityTimer <= 0)
         {
+            bossHP.gameObject.SetActive(true);
             float damage = collision.gameObject.GetComponent<AttackBase>().GetDamage();
             hp -= damage;
+            bossHP.GetComponent<TextMeshProUGUI>().text = "Coots HP: " + hp;
             print("Enemy Health: " + hp);
 
             if (hp <= 0)

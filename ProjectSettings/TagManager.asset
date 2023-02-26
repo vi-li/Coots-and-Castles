@@ -8,6 +8,8 @@ TagManager:
   - PlayerAttack
   - Enemy
   - Upgrade
+  - CootsPawL
+  - CootsPawR
   layers:
   - Default
   - TransparentFX
