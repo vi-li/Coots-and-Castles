@@ -35,12 +35,11 @@ public class Player : MonoBehaviour
     public GameController control;
 
     protected SpriteRenderer spriteRenderer;
-    protected Dictionary<string, Sprite> spriteDict;
-    public AssetReferenceSprite pawnSprite;
-    public AssetReferenceSprite knightSprite;
-    public AssetReferenceSprite rookSprite;
-    public AssetReferenceSprite bishopSprite;
-    public AssetReferenceSprite queenSprite;
+    public Sprite pawnSprite;
+    public Sprite knightSprite;
+    public Sprite rookSprite;
+    public Sprite bishopSprite;
+    public Sprite queenSprite;
     Sprite currentSprite;
 
     public enum PlayerType
@@ -81,9 +80,9 @@ public class Player : MonoBehaviour
         invulnerabilityTimer = 0;
 
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        spriteDict = new Dictionary<string, Sprite>();
         currentSprite = spriteRenderer.sprite;
-        LoadAddressableSprites();
+
+        
     }
     
     void Update()
@@ -124,23 +123,23 @@ public class Player : MonoBehaviour
         {
             case PlayerType.PAWN:
                 gameObject.AddComponent<PawnType>();
-                spriteRenderer.sprite = spriteDict["Pawn_Light"];
+                spriteRenderer.sprite = pawnSprite;
                 break;
             case PlayerType.KNIGHT:
                 gameObject.AddComponent<KnightType>();
-                spriteRenderer.sprite = spriteDict["Knight_Light"];
+                spriteRenderer.sprite = knightSprite;
                 break;
             case PlayerType.ROOK:
                 gameObject.AddComponent<RookType>();
-                spriteRenderer.sprite = spriteDict["Rook_Light"];
+                spriteRenderer.sprite = rookSprite;
                 break;
             case PlayerType.BISHOP:
                 gameObject.AddComponent<BishopType>();
-                spriteRenderer.sprite = spriteDict["Bishop_Light"];
+                spriteRenderer.sprite = bishopSprite;
                 break;
             case PlayerType.QUEEN:
                 gameObject.AddComponent<QueenType>();
-                spriteRenderer.sprite = spriteDict["Queen_Light"];
+                spriteRenderer.sprite = queenSprite;
                 break;
         }
         currentSprite = spriteRenderer.sprite;
@@ -290,42 +289,5 @@ public class Player : MonoBehaviour
     protected virtual void OnFire()
     {
         gameObject.GetComponent<PieceType>().Attack();
-    }
-
-    private void LoadAddressableSprites()
-    {
-        AsyncOperationHandle<Sprite> pawnSpriteHandle = pawnSprite.LoadAssetAsync();
-        AsyncOperationHandle<Sprite> knightSpriteHandle = knightSprite.LoadAssetAsync();
-        AsyncOperationHandle<Sprite> rookSpriteHandle = rookSprite.LoadAssetAsync();
-        AsyncOperationHandle<Sprite> bishopSpriteHandle = bishopSprite.LoadAssetAsync();
-        AsyncOperationHandle<Sprite> queenSpriteHandle = queenSprite.LoadAssetAsync();
-        
-        pawnSpriteHandle.Completed += SpriteLoaded;
-        knightSpriteHandle.Completed += SpriteLoaded;
-        rookSpriteHandle.Completed += SpriteLoaded;
-        bishopSpriteHandle.Completed += SpriteLoaded;
-        queenSpriteHandle.Completed += SpriteLoaded;
-
-        Addressables.Release(pawnSpriteHandle);
-        Addressables.Release(knightSpriteHandle);
-        Addressables.Release(rookSpriteHandle);
-        Addressables.Release(bishopSpriteHandle);
-        Addressables.Release(queenSpriteHandle);
-    }
-
-    private void SpriteLoaded(AsyncOperationHandle<Sprite> obj)
-    {
-        switch (obj.Status)
-        {
-            case AsyncOperationStatus.Succeeded:
-                spriteDict.Add(obj.Result.name, obj.Result);
-                break;
-            case AsyncOperationStatus.Failed:
-                Debug.LogError("Sprite load failed.");
-                break;
-            default:
-                // case AsyncOperationStatus.None:
-                break;
-        }
     }
 }

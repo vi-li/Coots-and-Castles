@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7744156086364892699}
   - component: {fileID: 6617873671637834464}
   - component: {fileID: 4256151744684935097}
-  - component: {fileID: 535890900078888492}
+  - component: {fileID: 6081380161567511167}
   m_Layer: 0
   m_Name: Bullet_Swipe_Coots
   m_TagString: EnemyAttack
@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Bullet_Swipe_Coots
   oneTimeUse: 0
---- !u!60 &535890900078888492
-PolygonCollider2D:
+--- !u!61 &6081380161567511167
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,18 +123,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.17523697, y: 0.0927016}
-      - {x: 0.12743422, y: 0.13999268}
-      - {x: -0.21656203, y: 0.12355756}
-      - {x: -0.2254559, y: 0.05670653}
-      - {x: -0.31862977, y: 0.0046636797}
-      - {x: -0.28314897, y: -0.03766816}
-      - {x: -0.20396611, y: -0.10492774}
-      - {x: -0.14533633, y: -0.12218734}
-      - {x: -0.044688582, y: -0.14274038}
-      - {x: 0.09127113, y: -0.09258192}
-      - {x: 0.16396612, y: -0.04040856}
-      - {x: 0.299447, y: 0.08192326}
-      - {x: 0.31862974, y: 0.13314898}
+  serializedVersion: 2
+  m_Size: {x: 0.19, y: 0.09}
+  m_EdgeRadius: 0
