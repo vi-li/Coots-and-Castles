@@ -1525,7 +1525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &281927479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3066,7 +3066,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -363965873
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a818dce5d8e4be54a8ccf952f172996f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3835,6 +3835,8 @@ MonoBehaviour:
   cameraF: {fileID: 519420033}
   cam: {fileID: 519420031}
   collisionTilemap: {fileID: 156701343}
+  enemyPieces: {fileID: 1533074480}
+  coots: {fileID: 281927478}
 --- !u!1001 &1076478274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13446,7 +13448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902635081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.39, y: -2.26, z: -1}
+  m_LocalPosition: {x: 0.39, y: -2.25, z: -1}
   m_LocalScale: {x: 6, y: 6, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13538,7 +13540,7 @@ MonoBehaviour:
   collisionTilemap: {fileID: 1260634394}
   collisionTilemap2: {fileID: 156701343}
   smoothSpeed: 0.1
-  startHp: 3
+  startHp: 1000
   hp: 0
   invulnerabilityCooldown: 1
   invulnerabilityTimer: 0
