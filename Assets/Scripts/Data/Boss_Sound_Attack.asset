@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackResource: {fileID: 8695456368927761017, guid: 23659be409f59de4cb0233b8b460edac, type: 3}
   cooldown: 0
-  damage: 0
+  damage: 1
   lifetime: 3
   type: Boss_Sound_Bullet
   bulletVelocity: {x: 1, y: 0}

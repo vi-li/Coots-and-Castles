@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackResource: {fileID: 2444283416611160208, guid: 14ef88085ff4b5d43b007aea984665a6, type: 3}
   cooldown: 0.5
-  damage: 0
+  damage: 1
   lifetime: 3.5
   type: Bullet_Swipe_Coots
   bulletVelocity: {x: 1, y: 0}
-  bulletSpeed: 2.5
+  bulletSpeed: 3.5
   bulletCount: 1
   minRotation: 270
   maxRotation: 270

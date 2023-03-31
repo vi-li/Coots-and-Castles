@@ -16,9 +16,10 @@ public class BishopType : PieceType
         bulletSpawner.spawnDatas = new List<BulletSpawnData>();
 
         // Use Bishop Attack Asset
-        string[] assetGuids = AssetDatabase.FindAssets("Bishop_Attack_Player");
-        string assetPath = AssetDatabase.GUIDToAssetPath(assetGuids[0]);
-        bulletSpawner.spawnDatas.Add((BulletSpawnData)AssetDatabase.LoadAssetAtPath(assetPath, typeof(BulletSpawnData)));
+        // string[] assetGuids = AssetDatabase.FindAssets("Bishop_Attack_Player");
+        // bulletSpawner.spawnDatas.Add((BulletSpawnData)AssetDatabase.LoadAssetAtPath(assetPath, typeof(BulletSpawnData)));
+        string assetPath = "AttackData/Bishop_Attack_Player";
+        bulletSpawner.spawnDatas.Add((BulletSpawnData)Resources.Load<BulletSpawnData>(assetPath));
     }
 
     public override void Attack()

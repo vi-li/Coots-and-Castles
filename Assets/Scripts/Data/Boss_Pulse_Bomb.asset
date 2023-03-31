@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
   m_Name: Boss_Pulse_Bomb
   m_EditorClassIdentifier: 
-  attackResource: {fileID: 1881179349174620747, guid: cc987ab9358116d4182d158eee7584c9, type: 3}
+  attackResource: {fileID: 3142227227800059945, guid: bf1ef9aadb092ce46952b38f1d33899f, type: 3}
   cooldown: 2
   damage: 1
   lifetime: 5
-  type: Bullet_Medium_Enemy
+  type: Bullet_Bomb_Boss
   bulletVelocity: {x: 1, y: 0}
   bulletSpeed: 3
   bulletCount: 10

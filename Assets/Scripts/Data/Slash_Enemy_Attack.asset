@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c872bbda7eb84db0d177522cb879c, type: 3}
   m_Name: Slash_Enemy_Attack
   m_EditorClassIdentifier: 
-  attackResource: {fileID: 0}
-  cooldown: 0
-  damage: 0
-  lifetime: 0
-  type: 
+  attackResource: {fileID: 3599815634906778584, guid: 83e7aef15672ef64999c84486880a125, type: 3}
+  cooldown: 1
+  damage: 1
+  lifetime: 0.5
+  type: Slash_Enemy
   bulletVelocity: {x: 0, y: 0}
   bulletSpeed: 0
-  bulletCount: 0
+  bulletCount: 1
   minRotation: 0
   maxRotation: 0
   specificRotations: []
