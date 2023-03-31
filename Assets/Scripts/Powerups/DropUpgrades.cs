@@ -5,7 +5,6 @@ using UnityEngine;
 public class DropUpgrades : MonoBehaviour
 {
     public Powerup[] upgrade;
-    public int size;
     public float dropChance; // Between 0 and 1
 
     // Start is called before the first frame update
@@ -22,13 +21,13 @@ public class DropUpgrades : MonoBehaviour
 
     public void Drop()
     {
-        int rngDrop = Random.Range(0, size);
+        int rngDrop = Random.Range(0, upgrade.Length);
 
         float rngNum = Random.Range(0f, 1f);
 
         if (rngNum <= dropChance)
         {
-            Powerup instantiatedUpgrade = Instantiate(upgrade[rngDrop], transform.position, transform.rotation, null);
+            Powerup instantiatedUpgrade = Instantiate(upgrade[rngDrop], transform.position, Quaternion.Euler(0, 0, 0), null);
         }
     }
 }

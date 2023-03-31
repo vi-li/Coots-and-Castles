@@ -11,13 +11,13 @@ public class LockScreen : MonoBehaviour
 
     public GameObject enemyPieces;
     public GameObject coots;
-    public Canvas bossHealth;
+    //public Canvas bossHealth;
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         enemyPieces.SetActive(false);
         coots.SetActive(true);
-        bossHealth.transform.Find("BossHealth").gameObject.SetActive(true);
+        //bossHealth.transform.Find("BossHealth").gameObject.SetActive(true);
 
         collisionTilemap.gameObject.SetActive(true);
         if (collision.tag == "Player")

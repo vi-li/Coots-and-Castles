@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3599815634906778580}
   - component: {fileID: 3599815634906778581}
   - component: {fileID: 3599815634906778586}
-  - component: {fileID: 3599815634906778587}
+  - component: {fileID: -263147453677445010}
   m_Layer: 0
   m_Name: Bullet_Slash_Pawn_Enemy
   m_TagString: EnemyAttack
@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Slash_Enemy
   oneTimeUse: 0
---- !u!58 &3599815634906778587
-CircleCollider2D:
+--- !u!61 &-263147453677445010
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,6 +113,16 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.010096163, y: 0.019962898}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.16}
+    newSize: {x: 0.01, y: 0.01}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.005
+  m_Size: {x: 0.39831278, y: 0.058579367}
+  m_EdgeRadius: 0

@@ -216,5 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775f3b7a9ad66a04b95636e6ebbbbc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgrade: {fileID: 201362428159601764, guid: 5f6c87833598fd844b06764e3d301c54, type: 3}
-  dropChance: 0.75
+  upgrade:
+  - {fileID: 201362428159601764, guid: 5f6c87833598fd844b06764e3d301c54, type: 3}
+  size: 0
+  dropChance: 1
