@@ -1555,7 +1555,8 @@ MonoBehaviour:
   invulnerabilityTimer: 0
   rend: {fileID: 0}
   control: {fileID: 352524502}
-  bossHP: {fileID: 1465746043}
+  health: {fileID: 0}
+  bossHP: {fileID: 0}
 --- !u!4 &281927480
 Transform:
   m_ObjectHideFlags: 0
@@ -3789,8 +3790,9 @@ MonoBehaviour:
   cameraF: {fileID: 519420033}
   cam: {fileID: 519420031}
   collisionTilemap: {fileID: 156701343}
-  enemyPieces: {fileID: 1533074480}
-  coots: {fileID: 281927478}
+  enemyPieces: {fileID: 0}
+  coots: {fileID: 0}
+  bossHealth: {fileID: 0}
 --- !u!1001 &1076478274
 PrefabInstance:
   m_ObjectHideFlags: 0
