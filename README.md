@@ -21,9 +21,12 @@ Created with <3 by:
 
 Vivian "Jellylemon" Li
 - Unity Programmer & Artist
+
 Hongquy "Abissu" Nguyen
 - Unity Programmer
+
 "Code"
 - 100% Original Music
+
 "midoka"
 - Artist
